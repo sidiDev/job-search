@@ -1,7 +1,12 @@
 import '../styles/globals.css'
+import '../styles/tailwind.css'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <div className="font-sans">
+      <Component {...pageProps} />
+    </div>
+  )
 }
 
 export default MyApp
