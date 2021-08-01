@@ -4,9 +4,9 @@ export default () => {
     return (
         <li className="shadow-md p-3 rounded-md border duration-300 hover:shadow-none hover:border-indigo-600">
             <Link href="/product">
-                <a className="flex space-x-4">
-                    <div className="w-22 h-22">
-                        <div className="w-20 h-20">
+                <a className="flex">
+                    <div className="w-20 h-20 md:w-22 sm:h-22">
+                        <div className="w-16 h-16">
                             <img src="/logo.png" className="w-full h-full" />
                         </div>
                     </div>
@@ -17,7 +17,7 @@ export default () => {
                             </div>
                             <div>
                                 <p className="text-gray-500 mt-1 break-words">
-                                    product manager- Operating systems (Facebook Reality labs)
+                                    Front End engineer
                                 </p>
                             </div>
                             <div className="flex items-center space-x-2 mt-1 text-gray-500 text-sm sm:text-base">
@@ -28,7 +28,11 @@ export default () => {
                                     Paris
                                 </span>
                                 <span className="text-4xl">&#8729;</span>
-                                <span>
+                                <span className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 hidden sm:block" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                        <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+                                    </svg>
                                     Full-time
                                 </span>
                             </div>

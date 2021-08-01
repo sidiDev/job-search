@@ -1,10 +1,36 @@
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import data from '../../json/data.json'
+
 export default () => {
 
-    const locations = ['new york', 'California']
+    const [search, setSearch] = useState('')
+    const [location, setLocation] = useState('')
+    const router = useRouter()
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        let { jobType = '', salary = '', expLevel = '' } = router.query
+        // jobType = jobType || { jobType: '' }
+        // salary = salary || { salary: '' }
+        // jobType = jobType || { jobType: '' }
+
+        if (search) {
+            router.push({
+                // pathname: '/search',
+                query: { search, location, jobType, salary, expLevel }
+            })
+        }
+    }
+
+    useEffect(() => {
+        console.log(router.query);
+    }, [router.query])
 
     return (
         <div className="mt-20 bg-white p-4 rounded-md shadow-md mx-4 sm:mx-auto sm:max-w-xl md:max-w-2xl">
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={handleSubmit}>
                 <div className="sm:flex flex-wrap items-center">
                     <div className="flex flex-1 items-center space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,6 +38,7 @@ export default () => {
                         </svg>
                         <input type="text" placeholder="Job title or keyword"
                             className="bg-transparent placeholder-gray-500 focus:outline-none"
+                            onInput={(e) => setSearch(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-1 items-center relative text-gray-500 mt-5 pl-10 sm:mt-0">
@@ -19,11 +46,13 @@ export default () => {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <select className="bg-transparent appearance-none text-gray-500 outline-none border-0 w-full">
+                        <select className="bg-transparent appearance-none text-gray-500 outline-none border-0 w-full"
+                            onChange={(e) => setLocation(e.target.value)}
+                        >
                             <option selected="true" disabled="true">Select Location</option>
                             {
-                                locations.map(( items, idx ) => {
-                                    return <option name={items} key={idx}>{ items }</option>
+                                data.locations.map(( items, idx ) => {
+                                    return <option value={items} name={items} key={idx}>{ items }</option>
                                 })
                             }
                         </select>

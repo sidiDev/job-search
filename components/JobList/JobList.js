@@ -8,8 +8,9 @@ export default () => {
                 <JobCard />
                 <JobCard />
                 <JobCard />
-                <JobCard />
 
+                <JobCard />
+                <JobCard />
             </ul>
         </div>
     )

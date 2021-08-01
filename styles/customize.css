@@ -1,0 +1,69 @@
+/* THUMB */
+
+.salary-range-container
+.salary-range input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #7C3AED;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.salary-range-container
+.salary-range input::-ms-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #7C3AED;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.salary-range-container
+.salary-range input::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #7C3AED;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* THUMB WHEN ACTIVE */
+
+.salary-range-container
+.salary-range input::-webkit-slider-thumb:active {
+    box-shadow: 0px 0px 0px 5px #7c3aed75;
+}
+
+.salary-range-container
+.salary-range input::-ms-thumb:active {
+    box-shadow: 0px 0px 0px 5px #7c3aed75;
+}
+
+.salary-range-container
+.salary-range input::-moz-range-thumb:active {
+    box-shadow: 0px 0px 0px 5px #7c3aed75;
+}
+
+/* HHDJ */
+
+.exp-level input {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: solid 1.4px #E5E7EB;
+    border-radius: 50%;
+}
+
+.exp-level input:checked {
+    background: #FFF;
+    border: solid 6px #7C3AED;
+}

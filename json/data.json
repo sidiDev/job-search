@@ -1,0 +1,9 @@
+{
+    "locations": [
+        "New York", "California", "Texas", "Las Vegas", "Los Angeles", "Hawaii", "San Bernardino", 
+        "New Jersey", "Greensboro", "Stockton", "Tampa", "New Orleans", "Tulsa", "Florida", "Miami", "Boston",
+        "Columbus", "San Diego"
+    ],
+    "jobType": ["Full-time", "Part-time", "Internship", "Remote"],
+    "expLevel": ["Entry level", "Senior level", "Mid level", "Sr.Manager level", "Manager level"]
+}
