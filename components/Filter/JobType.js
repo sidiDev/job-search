@@ -10,7 +10,7 @@ export default ({ data, setJobType, jobType }) => {
                     data.jobType.map((items, idx) => {
                         return (
                             <div key={idx} className="mt-2 mr-3 text-gray-700 job-type">
-                                <label for={items} className={`${jobType == items ? 'bg-indigo-600 text-white' : ''} p-2 block w-28 text-center rounded-md cursor-pointer bg-gray-200`}>{items}</label>
+                                <label for={items} className={`${jobType == items ? 'bg-cyan-600 text-white' : ''} p-2 block w-28 text-center rounded-md cursor-pointer bg-gray-200`}>{items}</label>
                                 <input type="radio" value={items} name="job-type" id={items} className="hidden"
                                     onChange={(e) => setJobType(e.target.value)}
                                  />

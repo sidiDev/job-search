@@ -19,9 +19,6 @@ export default ({ setState, enableScrolling }) => {
 
         let { search = '', location = '' } = router.query
         
-        // search = search || { search: '' }
-        // location = location || { location: '' }
-        
         if (jobType || salary || expLevel) {
             router.push({
                 // pathname: '',

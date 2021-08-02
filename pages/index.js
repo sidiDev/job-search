@@ -9,7 +9,7 @@ export default function Home() {
 
   const [state, setState] = useState(false)
 
-  const enableScrolling = () => document.body.style = 'overflow: auto'
+  const enableScrolling = () => document.body.className = 'sm:overflow-auto'
   
   return (
     <div className="">
@@ -26,7 +26,7 @@ export default function Home() {
         <button className="flex items-center py-2 px-4 border shadow-sm text-gray-600 rounded-md outline-none ring-indigo-600 ring-offset-2 focus:ring-2 md:hidden"
           onClick={() => {
             setState(!state);
-            document.body.style = 'overflow: hidden'
+            document.body.className = 'overflow-hidden sm:overflow-auto'
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,7 +36,7 @@ export default function Home() {
         </button>
 
         <div className="mt-12 md:flex">
-          <div className={`fixed z-10 left-0 bottom-0 pb-5 pt-3 px-4 w-full rounded-t-3xl bg-white duration-300 sm:static sm:pt-0 sm:pb-0 sm:px-0 sm:w-auto`}
+          <div className={`${state ? 'block' : 'hidden'} fixed z-10 left-0 bottom-0 pt-3 px-4 w-full rounded-t-3xl bg-white duration-300 sm:static sm:pt-0 sm:pb-0 sm:px-0 sm:w-auto md:block`}
             style={state ? {bottom: '0'} : {bottom: '-38em'}}
           >
             <Filter setState={setState} enableScrolling={enableScrolling} />

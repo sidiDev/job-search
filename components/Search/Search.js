@@ -61,7 +61,7 @@ export default () => {
                         </svg>
                     </div>
                     <div className="mt-5 w-full md:w-auto md:mt-0 md:ml-4">
-                        <button className="w-full text-white bg-indigo-600 p-2 px-4 rounded-md outline-none ring-indigo-600 ring-offset-2 focus:ring-2 md:px-8">
+                        <button className="w-full text-white bg-cyan-600 p-2 px-4 rounded-md outline-none ring-cyan-600 ring-offset-2 focus:ring-2 md:px-8">
                             Search
                         </button>
                     </div>

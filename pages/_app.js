@@ -1,6 +1,6 @@
-import '../styles/globals.css'
+// import '../styles/globals.css'
 import '../styles/customize.css'
-import '../styles/tailwind.css'
+import 'tailwindcss/tailwind.css'
 
 function MyApp({ Component, pageProps }) {
   return (

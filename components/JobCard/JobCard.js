@@ -2,8 +2,8 @@ import Link from "next/link"
 
 export default () => {
     return (
-        <li className="shadow-md p-3 rounded-md border duration-300 hover:shadow-none hover:border-indigo-600">
-            <Link href="/product">
+        <li className="shadow-md p-3 rounded-md border duration-300 hover:shadow-none hover:border-cyan-600">
+            <Link href="/job/Full-stack">
                 <a className="flex">
                     <div className="w-20 h-20 md:w-22 sm:h-22">
                         <div className="w-16 h-16">

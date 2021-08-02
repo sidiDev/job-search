@@ -6,7 +6,7 @@
     appearance: none;
     width: 15px;
     height: 15px;
-    background: #7C3AED;
+    background: #06b6d4;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -17,7 +17,7 @@
     appearance: none;
     width: 15px;
     height: 15px;
-    background: #7C3AED;
+    background: #06b6d4;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -28,7 +28,7 @@
     appearance: none;
     width: 15px;
     height: 15px;
-    background: #7C3AED;
+    background: #06b6d4;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -37,20 +37,20 @@
 
 .salary-range-container
 .salary-range input::-webkit-slider-thumb:active {
-    box-shadow: 0px 0px 0px 5px #7c3aed75;
+    box-shadow: 0px 0px 0px 5px #06b5d444;
 }
 
 .salary-range-container
 .salary-range input::-ms-thumb:active {
-    box-shadow: 0px 0px 0px 5px #7c3aed75;
+    box-shadow: 0px 0px 0px 5px #06b5d444;
 }
 
 .salary-range-container
 .salary-range input::-moz-range-thumb:active {
-    box-shadow: 0px 0px 0px 5px #7c3aed75;
+    box-shadow: 0px 0px 0px 5px #06b5d444;
 }
 
-/* HHDJ */
+/* EXPERIENCE LEVEL RADIO */
 
 .exp-level input {
     position: relative;
@@ -65,5 +65,5 @@
 
 .exp-level input:checked {
     background: #FFF;
-    border: solid 6px #7C3AED;
+    border: solid 6px #06b6d4;
 }

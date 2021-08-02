@@ -7,7 +7,7 @@ export default ({ setSalary }) => {
 
     const onInput = (e) => {
         setSalaryValue(Math.ceil(e.target.value * 2.5))
-        rangeRef.current.style = `width: ${e.target.value}%; background: #7C3AED`
+        rangeRef.current.style = `width: ${e.target.value}%; background: #06b6d4`
         setSalary(Math.ceil(e.target.value * 2.5))
     }
 
