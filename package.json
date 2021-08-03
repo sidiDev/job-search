@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "build-css": "tailwindcss build -i ./styles/tailwind.css -o ./styles/globals.css"
+    "start": "next start"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
