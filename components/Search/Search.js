@@ -51,7 +51,7 @@ export default () => {
                         >
                             <option selected="true" disabled="true">Select Location</option>
                             {
-                                data.locations.map(( items, idx ) => {
+                                data.locations.sort().map(( items, idx ) => {
                                     return <option value={items} name={items} key={idx}>{ items }</option>
                                 })
                             }
