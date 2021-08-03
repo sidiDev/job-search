@@ -6,6 +6,10 @@ export default () => {
     const [fileName, setFileName] = useState('')
     const [email, setEmail] = useState('')
     const [about, setAbout] = useState('')
+
+    const [fileAlert, setFileAlert] = useState('')
+    const [emailAlert, setEmailAlert] = useState('')
+    const [aboutAlert, setAboutAlert] = useState('')
     
 
     const uploadFile = (e) => {
@@ -17,7 +21,16 @@ export default () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.table({email, about})
+        setFileAlert('')
+        setEmailAlert('')
+        setAboutAlert('')
+
+        if (!file) setFileAlert('Please upload a file')
+        if (!email) setEmailAlert('Please Enter your email')
+        if (!about) setAboutAlert('This field should not be empty')
+        else {
+            console.log(true)
+        }
     }
 
     return (
@@ -32,7 +45,7 @@ export default () => {
                             <span className="text-cyan-500">Upload file</span>
                             {
                                 fileName ? (
-                                    <span className="flex justify-center py-3 text-gray-800">
+                                    <span className="flex justify-center py-3 text-gray-800 break-all">
                                         {fileName}
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-1 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -46,17 +59,20 @@ export default () => {
                             onChange={uploadFile}
                         />
                     </div>
+                    <span className="text-xs text-red-600">{fileAlert}</span>
                     <div className="mt-4">
                         <label className="text-gray-500">Email</label>
                         <input type="email" placeholder="Enter your email" className="mt-1 w-full p-2 border outline-none rounded-md focus:border-cyan-500" 
                             onInput={(e) => setEmail(e.target.value)}
                         />
+                        <span className="text-xs text-red-600">{emailAlert}</span>
                     </div>
                     <div className="mt-4">
                         <label className="text-gray-500">
                             About you
                         </label>
                         <textarea className="w-full h-48 mt-1 border rounded-md outline-none resize-none focus:border-cyan-500" onInput={(e) => setAbout(e.target.value)}></textarea>
+                        <span className="block my-2 text-xs text-red-600">{aboutAlert}</span>
                     </div>
                 </div>
                 <button className="bg-cyan-500 text-white rounded-md w-full p-2 outline-none ring-cyan-500 ring-offset-2 focus:ring-2">
