@@ -29,7 +29,7 @@ export default ({ setState, enableScrolling }) => {
     }
 
     return (
-        <div className="bg-white md:top-3 flex-1 md:max-w-sm lg:max-w-lg md:sticky md:h-96">
+        <div className="bg-white pb-3 md:top-3 flex-1 md:max-w-sm lg:max-w-lg md:sticky md:h-96">
             <div className="h-8 sm:hidden">
                 <button className="float-right text-red-600"
                     onClick={() => {
