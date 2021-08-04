@@ -5,27 +5,50 @@ export default () => {
 
     const [state, setState] = useState(false)
 
+    const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
+    const [number, setNumber] = useState('')
     const [password, setPassWord] = useState('')
+    const [firstNameAlert, setFirstNameAlert] = useState('')
     const [emailAlert, setEmailAlert] = useState('')
+    const [numberAlert, setNumberAlert] = useState('')
     const [passwordAlert, setPasswordAlert] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(email);
+
+        setFirstNameAlert('')
+        setEmailAlert('')
+        setNumberAlert('')
+        setPasswordAlert('')
+
+        if (!firstName) setFirstNameAlert('Please enter your first name')
+        if (!email) setEmailAlert('Please Enter your email')
+        if (!number) setNumberAlert('Please Enter your contact number')
+        if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
+        else {
+            console.log(true);
+        }
     }
 
     return (
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
             <div className="sm:space-x-3 sm:flex">
-                <Input className="" type="text"  labelName="First name" />
+              <div>
+                <Input className="" type="text"  labelName="First name" onInput={(e) => setFirstName(e.target.value)} />
+                <span className="text-xs text-red-600 my-2 block">{firstNameAlert}</span>
+              </div>
+              <div>
                 <Input className="" type="text" labelName="Last name" />
+              </div>
             </div>
             <div>
                 <Input className="" type="email" labelName="Email" onInput={(e) => setEmail(e.target.value)} />
+                <span className="text-xs text-red-600 my-2 block">{emailAlert}</span>
             </div>
             <div>
-                <Input className="" type="number" labelName="Contact number" />
+                <Input className="" type="number" labelName="Contact number" onInput={(e) => setNumber(e.target.value)} />
+                <span className="text-xs text-red-600 my-2 block">{numberAlert}</span>
             </div>
             <div className="space-y-1">
                   <label className="text-gray-600 font-medium">Password</label>
@@ -51,6 +74,7 @@ export default () => {
                     }
                   </button>
                 </div>
+                <span className="text-xs text-red-600 my-2 block">{passwordAlert}</span>
             </div>
             <button className="w-full py-2 rounded-md bg-cyan-600 text-white m-auto outline-none shadow-md ring-cyan-600 ring-offset-2 focus:ring-2">
                 Update
