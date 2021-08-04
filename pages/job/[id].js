@@ -1,3 +1,4 @@
+import Head from "next/head"
 import JobDetails from "../../components/JobDetails/JobDetails"
 import JobDetailsSide from "../../components/JobDetails/JobDetailsSide/JobDetailsSide"
 import JobHeader from "../../components/JobDetails/JobHeader/JobHeader"
@@ -6,6 +7,10 @@ import Nav from '../../components/Nav/Nav'
 export default () => {
     return (
         <>
+        <Head>
+            <meta name="description" content="We need a front-end developer to help us in our mission" />
+            <title>Front end developer</title>
+        </Head>
             <div className="shadow pb-6">
                 <Nav />
             </div>

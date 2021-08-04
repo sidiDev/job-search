@@ -52,7 +52,7 @@
 
 /* EXPERIENCE LEVEL RADIO */
 
-.exp-level input {
+.radio-container input {
     position: relative;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -63,7 +63,15 @@
     border-radius: 50%;
 }
 
-.exp-level input:checked {
+.radio-container input:checked {
     background: #FFF;
     border: solid 6px #06b6d4;
+}
+
+
+@media (max-width: 640px) {
+    
+    .sidebar {
+        transform: translateX(-14em);
+    }
 }
