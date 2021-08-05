@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Input from "../../../components/Input/Input"
+import data from '../../../json/data.json'
 
 export default () => {
 
@@ -7,11 +8,16 @@ export default () => {
 
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
-    const [number, setNumber] = useState('')
+    const [number, setEmployessNum] = useState('')
+    const [location, setLocation] = useState('')
+    const [about, setAbout] = useState('')
     const [password, setPassWord] = useState('')
+
     const [firstNameAlert, setFirstNameAlert] = useState('')
     const [emailAlert, setEmailAlert] = useState('')
-    const [numberAlert, setNumberAlert] = useState('')
+    const [EmployeesNumAlert, setEmployeesNumAlert] = useState('')
+    const [locationAlert, setLocationAlert] = useState('')
+    const [aboutAlert, setAboutAlert] = useState('')
     const [passwordAlert, setPasswordAlert] = useState('')
 
     const handleSubmit = (e) => {
@@ -19,12 +25,16 @@ export default () => {
 
         setFirstNameAlert('')
         setEmailAlert('')
-        setNumberAlert('')
+        setEmployeesNumAlert('')
+        setLocationAlert('')
+        setAboutAlert('')
         setPasswordAlert('')
 
         if (!firstName) setFirstNameAlert('Please enter your first name')
         else if (!email) setEmailAlert('Please Enter your email')
-        else if (!number) setNumberAlert('Please Enter your contact number')
+        else if (!number) setEmployeesNumAlert('Please Enter your contact number')
+        else if (!location) setLocationAlert('Please select company location')
+        else if (!about) setAboutAlert('This field should not be empty')
         else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
         else {
             console.log(true);
@@ -33,22 +43,44 @@ export default () => {
 
     return (
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-            <div className="sm:space-x-3 sm:flex">
               <div>
-                <Input className="" type="text"  labelName="First name" onInput={(e) => setFirstName(e.target.value)} />
+                <Input className="" type="text"  labelName="Company name" onInput={(e) => setFirstName(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{firstNameAlert}</span>
               </div>
-              <div>
-                <Input className="" type="text" labelName="Last name" />
-              </div>
-            </div>
             <div>
                 <Input className="" type="email" labelName="Email" onInput={(e) => setEmail(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{emailAlert}</span>
             </div>
             <div>
-                <Input className="" type="number" labelName="Contact number" onInput={(e) => setNumber(e.target.value)} />
-                <span className="text-xs text-red-600 my-2 block">{numberAlert}</span>
+                <Input className="" type="number" labelName="Number of employees" onInput={(e) => setEmployessNum(e.target.value)} />
+                <span className="text-xs text-red-600 my-2 block">{EmployeesNumAlert}</span>
+            </div>
+            <div className="flex flex-1 items-center border rounded-md relative text-gray-500 p-2 pl-8">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute left-0 pointer-events-none ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <select className="bg-transparent appearance-none text-gray-500 outline-none border-0 w-full"
+                  onChange={(e) => setLocation(e.target.value)}
+              >
+                  <option selected="true" disabled="true">Select Location</option>
+                  {
+                    data.locations.sort().map(( items, idx ) => {
+                        return <option value={items} name={items} key={idx}>{ items }</option>
+                    })
+                  }
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute right-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <span className="text-xs text-red-600 my-2 block">{locationAlert}</span>
+            <div className="mt-4">
+                <label className="font-medium text-gray-600">
+                    About the company
+                </label>
+                <textarea className="w-full h-40 mt-1 p-2 border rounded-md outline-none resize-none focus:border-cyan-500" onInput={(e) => setAbout(e.target.value)}></textarea>
+                <span className="block my-2 text-xs text-red-600">{aboutAlert}</span>
             </div>
             <div className="space-y-1">
                   <label className="text-gray-600 font-medium">Password</label>

@@ -8,7 +8,7 @@ export default () => {
             <div className="shadow pb-6">
                 <Nav />
             </div>
-            <div className="mt-12 mx-4 gap-12 grid-cols-3 sm:grid">
+            <div className="mt-12 mx-4 gap-12 grid-cols-3 sm:grid sm:mx-8">
                 <Sidebar />
                 <Profile />
             </div>

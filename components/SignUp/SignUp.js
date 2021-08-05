@@ -22,9 +22,9 @@ export default () => {
       setRoleAlert('')
 
       if (!email) setEmailAlert('Please Enter your email')
-      if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
-      if (!confirmPassword || confirmPassword != password) setConfirmPassAlert('Please check the password')
-      if (!role) setRoleAlert('Please chose your position')
+      else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
+      else if (!confirmPassword || confirmPassword != password) setConfirmPassAlert('Please check the password')
+      else if (!role) setRoleAlert('Please chose your position')
       else {
           console.log({ email, password, confirmPassword, role });
       }

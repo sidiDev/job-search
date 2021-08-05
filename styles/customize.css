@@ -68,6 +68,23 @@
     border: solid 6px #06b6d4;
 }
 
+.ql-container.ql-snow {
+    height: 300px !important;
+    overflow: auto;
+    overflow-y: scroll !important;
+}
+
+.ql-container.ql-snow::-webkit-scrollbar {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 12px;
+    background: #f1f1f1;
+}
+
+.ql-container.ql-snow::-webkit-scrollbar-thumb {
+    background: rgb(138, 138, 138);
+}
 
 @media (max-width: 640px) {
     

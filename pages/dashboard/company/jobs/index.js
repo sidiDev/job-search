@@ -1,6 +1,6 @@
 import Nav from "../../../../components/Nav/Nav"
-import Sidebar from "../../../../dashboard/employee/Sidebar/Sidebar"
-import Skills from "../../../../dashboard/employee/Skills/Skills"
+import Sidebar from "../../../../dashboard/company/Sidebar/Sidebar"
+import Jobs from "../../../../dashboard/company/Jobs/Jobs"
 
 export default () => {
     return (
@@ -8,9 +8,9 @@ export default () => {
             <div className="shadow pb-6">
                 <Nav />
             </div>
-            <div className="mt-12 mx-4 gap-12 grid-cols-3 sm:grid sm:mx-8">
+            <div className="mt-12 mx-4 grid-cols-3 gap-2 sm:grid lg:gap-12 sm:mx-8">
                 <Sidebar />
-                <Skills />
+                <Jobs />
             </div>
         </div>
     )

@@ -16,7 +16,7 @@ export default () => {
       setPasswordAlert('')
 
       if (!email) setEmailAlert('Please Enter your email')
-      if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
+      else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
       else {
           console.log(true);
       }
