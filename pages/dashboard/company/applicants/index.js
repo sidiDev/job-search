@@ -1,7 +1,32 @@
+import { useState } from "react"
+import Nav from "../../../../components/Nav/Nav"
+import ApplicantCard from "../../../../dashboard/company/Applicants/ApplicantCard"
+import ApplicantInfo from "../../../../dashboard/company/Applicants/ApplicantInfo"
+
 export default () => {
+
+    const [state, setState] = useState(false)
+
     return (
         <div>
-            Applicants
+            <div className="shadow pb-6">
+                <Nav />
+            </div>
+            <div className="relative mt-12 mx-4 items-start gap-4 sm:mx-8 sm:flex lg:gap-8">
+                <ul className="flex-1 space-y-3">
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+                    <ApplicantCard setState={ setState } />
+
+                </ul>
+                <ApplicantInfo state={ state } setState={ setState } />
+            </div>
         </div>
     )
 }

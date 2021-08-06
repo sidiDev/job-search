@@ -6,10 +6,13 @@ export default () => {
     const [state, setState] = useState(false)
 
     const [firstName, setFirstName] = useState('')
+    const [jobTitle, setJobTitle] = useState('')
     const [email, setEmail] = useState('')
     const [number, setNumber] = useState('')
     const [password, setPassWord] = useState('')
+
     const [firstNameAlert, setFirstNameAlert] = useState('')
+    const [jobTitleAlert, setJobTitleAlert] = useState('')
     const [emailAlert, setEmailAlert] = useState('')
     const [numberAlert, setNumberAlert] = useState('')
     const [passwordAlert, setPasswordAlert] = useState('')
@@ -18,11 +21,13 @@ export default () => {
         e.preventDefault()
 
         setFirstNameAlert('')
+        setJobTitleAlert('')
         setEmailAlert('')
         setNumberAlert('')
         setPasswordAlert('')
 
         if (!firstName) setFirstNameAlert('Please enter your first name')
+        else if (!jobTitle) setJobTitleAlert('Please enter your job title')
         else if (!email) setEmailAlert('Please Enter your email')
         else if (!number) setNumberAlert('Please Enter your contact number')
         else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
@@ -39,7 +44,8 @@ export default () => {
                 <span className="text-xs text-red-600 my-2 block">{firstNameAlert}</span>
               </div>
               <div>
-                <Input className="" type="text" labelName="Last name" />
+                <Input className="" type="text" labelName="Job title" onInput={(e) => setJobTitle(e.target.value)} />
+                <span className="text-xs text-red-600 my-2 block">{jobTitleAlert}</span>
               </div>
             </div>
             <div>
