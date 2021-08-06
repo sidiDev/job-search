@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Nav from "../../../../components/Nav/Nav"
 import ApplicantCard from "../../../../dashboard/company/Applicants/ApplicantCard"
 import ApplicantInfo from "../../../../dashboard/company/Applicants/ApplicantInfo"
@@ -6,6 +6,12 @@ import ApplicantInfo from "../../../../dashboard/company/Applicants/ApplicantInf
 export default () => {
 
     const [state, setState] = useState(false)
+
+    useEffect(() => {
+        state ? 
+        (document.body.className = 'overflow-hidden sm:overflow-auto') : 
+        ( document.body.className = 'overflow-auto' )
+    }, [state])
 
     return (
         <div>
