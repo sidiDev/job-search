@@ -1,17 +1,21 @@
 import Head from "next/head"
 import Nav from "../../components/Nav/Nav"
 import SignUp from "../../components/SignUp/SignUp"
+import userData from "../../components/userData/UserData"
+import Layout from '../../components/Layouts/Layout'
 
-export default () => {
+const index = ({ data }) => {
     return (
-        <div>
+        <Layout data={data}>
             <Head>
                 <title>Sign up</title>
             </Head>
             <div className="shadow pb-6">
-                <Nav />
+                <Nav data={data} />
             </div>
             <SignUp />
-        </div>
+        </Layout>
     )
 }
+
+export default userData(index)

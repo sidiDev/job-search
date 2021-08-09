@@ -1,17 +1,21 @@
 import Nav from "../../../../components/Nav/Nav"
 import Jobs from "../../../../dashboard/employee/Jobs/Jobs"
 import Sidebar from "../../../../dashboard/employee/Sidebar/Sidebar"
+import userData from "../../../../components/userData/UserData"
+import LoggedLayout from "../../../../components/Layouts/LoggedLayout"
 
-export default () => {
+const index = ({ data }) => {
     return (
-        <div>
+        <LoggedLayout data={data}>
             <div className="shadow pb-6">
-                <Nav />
+                <Nav data={data} />
             </div>
             <div className="mt-12 mx-4 gap-12 grid-cols-3 sm:grid sm:mx-8">
                 <Sidebar />
                 <Jobs />
             </div>
-        </div>
+        </LoggedLayout>
     )
 }
+
+export default userData(index)

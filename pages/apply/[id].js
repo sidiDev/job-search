@@ -1,17 +1,21 @@
 import Head from "next/head"
 import ApplyForm from "../../components/ApplyForm/ApplyForm"
 import Nav from '../../components/Nav/Nav'
+import LoggedLayout from '../../components/Layouts/LoggedLayout'
+import userData from "../../components/userData/UserData"
 
-export default () => {
+const index = ({ data }) => {
     return (
-        <div>
+        <LoggedLayout data={data}>
             <Head>
                 <title>Apply for job</title>
             </Head>
             <div className="shadow pb-6">
-                <Nav />
+                <Nav data={data} />
             </div>
             <ApplyForm />
-        </div>
+        </LoggedLayout>
     )
 }
+
+export default userData(index)

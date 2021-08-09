@@ -40,7 +40,7 @@ export default ({ state, setState }) => {
                         </span>
                     </div>
                 </div>
-                <div className="flex justify-between absolute left-0 right-0 bottom-0">
+                <div className="flex justify-between absolute left-0 right-0 bottom-0 sm:static">
                     <a href="mailto:sidi@gmail.com" className="flex items-center justify-center flex-1 border p-4 sm:border-b-0">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />

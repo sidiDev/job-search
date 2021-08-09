@@ -1,9 +1,11 @@
 import { useState } from "react"
 import Nav from "../../../../components/Nav/Nav"
+import userData from "../../../../components/userData/UserData"
+import LoggedLayout from "../../../../components/Layouts/LoggedLayout"
 import NewJobEditor from "../../../../dashboard/company/PostNewJob/NewJobEditor"
 import NewJobForm from "../../../../dashboard/company/PostNewJob/NewJobForm"
 
-export default () => {
+const index = ({ data }) => {
 
     const [jobTitle, setJobTitle] = useState('')
     const [jobDetails, setJobDetails] = useState('')
@@ -43,24 +45,28 @@ export default () => {
     }
 
     return (
-        <div className="mb-3">
-            <div className="shadow pb-6">
-                <Nav />
+        <LoggedLayout data={data}>
+            <div className="mb-3">
+                <div className="shadow pb-6">
+                    <Nav data={data} />
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="mt-12 mx-4 grid-cols-3 md:gap-8 lg:gap-12 md:grid">
+                        <NewJobForm states={ { 
+                            jobType, setLocation, setJobType, setSalary, setExpLevel, setJobTitle,
+                            jobTitleAlert, locationAlert, jobTypeAlert, salaryAlert, expLevelAlert
+                        } } />
+                        <NewJobEditor jobDetailsAlert={ jobDetailsAlert } getContent={(e) => setJobDetails(e)} />
+                    </div>
+                    <div className="mx-4">
+                        <button type="submit" className="mt-3 border font-semibold focus:outline-none py-2 rounded-md border-cyan-600 bg-cyan-600 text-white hover:bg-cyan-700 hover:border-cyan-700 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 active:bg-cyan-700 active:border-cyan-700 w-full sm:w-auto sm:px-12">
+                            Post
+                        </button>
+                    </div>
+                </form>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div className="mt-12 mx-4 grid-cols-3 md:gap-8 lg:gap-12 md:grid">
-                    <NewJobForm states={ { 
-                        jobType, setLocation, setJobType, setSalary, setExpLevel, setJobTitle,
-                        jobTitleAlert, locationAlert, jobTypeAlert, salaryAlert, expLevelAlert
-                    } } />
-                    <NewJobEditor jobDetailsAlert={ jobDetailsAlert } getContent={(e) => setJobDetails(e)} />
-                </div>
-                <div className="mx-4">
-                    <button type="submit" className="mt-3 border font-semibold focus:outline-none py-2 rounded-md border-cyan-600 bg-cyan-600 text-white hover:bg-cyan-700 hover:border-cyan-700 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 active:bg-cyan-700 active:border-cyan-700 w-full sm:w-auto sm:px-12">
-                        Post
-                    </button>
-                </div>
-            </form>
-        </div>
+        </LoggedLayout>
     )
 }
+
+export default userData(index)

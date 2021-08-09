@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import NavLink from '../Links/NavLink'
+import LoggedInLink from '../Links/LoggedInLink'
 
-export default () => {
+const Nav = ({ data }) => {
 
     const [state, setState] = useState(false)
-
 
     useEffect(() => {
         window.onscroll = () => setState(false)
@@ -38,30 +39,9 @@ export default () => {
                     </button>
                     <div className={`${state ? 'block' : 'hidden'} absolute z-10 top-12 right-5 p-4 w-60 border rounded-md shadow-md bg-white sm:bg-transparent sm:relative sm:w-auto sm:p-0 sm:shadow-none sm:border-0 sm:top-0 sm:right-0 sm:block`}>
                         <ul className="space-y-4 sm:space-y-0 sm:flex sm:space-x-5">
-                            <li className="text-gray-700 hover:text-gray-900">
-                                <Link href="/dashboard">
-                                    <a>
-                                        Dashboard
-                                    </a>
-                                </Link>
-                            </li>
-                            <li className="text-gray-700 hover:text-gray-900">
-                                <Link exact href="/login">
-                                    <a>
-                                        Login
-                                    </a>
-                                </Link>
-                            </li>
-                            <li className="text-cyan-500 hover:text-cyan-700">
-                                <Link exact href="/signup">
-                                    <a className="flex items-center">
-                                        Sign up
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </Link>
-                            </li>
+                            <LoggedInLink data={data} name="Dashboard" pathname={`/dashboard/${data.userData.role}`} />
+                            <NavLink data={data} name="Login" pathname="/login" />
+                            <NavLink data={data} name="Sign up" pathname="/signup" />
                         </ul>
                     </div>
                 </div>
@@ -69,3 +49,5 @@ export default () => {
         </nav>
     )
 }
+
+export default Nav

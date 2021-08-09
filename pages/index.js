@@ -2,18 +2,19 @@ import { useState } from 'react'
 import Filter from '../components/Filter/Filter'
 import JobList from '../components/JobList/JobList'
 import Nav from '../components/Nav/Nav'
+import UserData from '../components/userData/UserData'
 import Search from '../components/Search/Search'
 
-export default function Home() {
+function Home({ data }) {
 
   const [state, setState] = useState(false)
 
   const enableScrolling = () => document.body.className = 'sm:overflow-auto'
   
   return (
-    <div className="">
+    <div>
       <header className="bg-indigo-50 pb-5">
-        <Nav />
+        <Nav data={data} />
         <Search />
       </header>
       <div className="mt-12 mx-4 sm:mx-8">
@@ -45,3 +46,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default UserData(Home)

@@ -1,8 +1,17 @@
-import { useState } from "react"
+import axios from "axios"
+import { useRouter } from "next/dist/client/router"
+import { useRef, useState } from "react"
+import cookie from 'js-cookie'
+import api from "../../api/api"
 
 export default () => {
 
+  const router = useRouter()
+  const errorMsgRef = useRef()
+
   const [state, setState] = useState(false)
+  const [error, setErrorMsg] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const [email, setEmail] = useState('')
   const [password, setPassWord] = useState('')
@@ -18,11 +27,53 @@ export default () => {
       if (!email) setEmailAlert('Please Enter your email')
       else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
       else {
-          console.log(true);
+
+        setLoading(true)
+        const data = { email, password }
+
+          axios.post(`${api}/api/user/login`, data).then(res => {
+            
+            setLoading(false)
+
+            if (res.data.msg == 'This email is not exist') {
+              setErrorMsg('This email is not exist')
+              errorMsgRef.current.scrollIntoView({behavior: 'smooth'})
+
+            } else if (res.data.msg == 'Password is not correct') {
+              setErrorMsg('Password is not correct')
+              errorMsgRef.current.scrollIntoView({behavior: 'smooth'})
+
+            } else {
+
+              cookie.set('token', res.data.token, {
+                expires: 6000000 * 15 * 5
+              })
+
+              router.push(`/dashboard/${res.data.pathname}`)
+            }
+
+          })
       }
   }
 
   return (
+    <>
+      {
+        error ? (
+            <div ref={errorMsgRef} className="flex justify-between items-center bg-indigo-100 rounded-sm my-3 mx-4 sm:mx-auto sm:max-w-lg">
+              <p className="p-4 font-medium text-indigo-600">
+                { error }
+              </p>
+              <button className="text-red-600 mx-4"
+                onClick={() => setErrorMsg('')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+        ) : ''
+      }
       <div className="mt-12 mx-4 rounded-md sm:max-w-lg sm:mx-auto sm:shadow-md sm:p-4 sm:border">
         <h1 className="pb-12 text-3xl text-center">Login</h1>
         <div className="">
@@ -63,6 +114,14 @@ export default () => {
               <span className="text-xs text-red-600">{passwordAlert}</span>
               <div>
                 <button type="submit" className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none w-full px-4 py-3 leading-6 rounded-md border-cyan-600 bg-cyan-600 text-white hover:bg-cyan-700 hover:border-cyan-700 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 active:bg-cyan-700 active:border-cyan-700">
+                  {
+                    loading ? (
+                      <svg className="animate-spin mx-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    ) : ''
+                  }
                   Login
                 </button>
               </div>
@@ -70,5 +129,6 @@ export default () => {
           </div>
         </div>        
       </div>
+    </>
   )
 }

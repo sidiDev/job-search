@@ -26,8 +26,8 @@ export default () => {
         setAboutAlert('')
 
         if (!file) setFileAlert('Please upload a file')
-        if (!email) setEmailAlert('Please Enter your email')
-        if (!about) setAboutAlert('This field should not be empty')
+        else if (!email) setEmailAlert('Please Enter your email')
+        else if (!about) setAboutAlert('This field should not be empty')
         else {
             console.log(true)
         }

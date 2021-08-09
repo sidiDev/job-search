@@ -3,8 +3,9 @@ import JobDetails from "../../components/JobDetails/JobDetails"
 import JobDetailsSide from "../../components/JobDetails/JobDetailsSide/JobDetailsSide"
 import JobHeader from "../../components/JobDetails/JobHeader/JobHeader"
 import Nav from '../../components/Nav/Nav'
+import userData from "../../components/userData/UserData"
 
-export default () => {
+const index = ({ data }) => {
     return (
         <>
         <Head>
@@ -12,7 +13,7 @@ export default () => {
             <title>Front end developer</title>
         </Head>
             <div className="shadow pb-6">
-                <Nav />
+                <Nav data={data} />
             </div>
             <div className="mt-5 mx-4 sm:mx-8">
                 <JobHeader />
@@ -26,3 +27,5 @@ export default () => {
         </>
     )
 }
+
+export default userData(index)
