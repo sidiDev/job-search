@@ -19,8 +19,8 @@ const index = ({ data }) => {
                 <JobHeader />
                 <main className="mt-12 mb-3">
                     <article className="grid-cols-3 md:grid md:gap-4 lg:gap-12">
-                        <JobDetailsSide />
-                        <JobDetails />
+                        <JobDetailsSide data={data} />
+                        <JobDetails data={data} />
                     </article>
                 </main>
             </div>

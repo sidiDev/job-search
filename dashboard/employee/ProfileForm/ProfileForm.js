@@ -1,15 +1,24 @@
-import { useState } from "react"
+import axios from "axios";
+import { useRef, useState } from "react"
+import api from '../../../api/api'
+import ProfileUpdatedAlert from "../../../components/Alerts/ProfileUpdatedAlert";
 import Input from "../../../components/Input/Input"
 
-export default () => {
+export default ({ data }) => {
 
-    const [state, setState] = useState(false)
+  console.log(data);
 
-    const [firstName, setFirstName] = useState('')
-    const [jobTitle, setJobTitle] = useState('')
-    const [email, setEmail] = useState('')
-    const [number, setNumber] = useState('')
-    const [password, setPassWord] = useState('')
+  const updatedMsgRef = useRef()
+
+  const [state, setState] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [updated, setUpdated] = useState(false)
+
+    const [firstName, setFirstName] = useState(data.username)
+    const [jobTitle, setJobTitle] = useState(data.jobTitle)
+    const [email, setEmail] = useState(data.email)
+    const [number, setNumber] = useState(data.number)
+    const [password, setPassWord] = useState(data.password)
 
     const [firstNameAlert, setFirstNameAlert] = useState('')
     const [jobTitleAlert, setJobTitleAlert] = useState('')
@@ -32,34 +41,50 @@ export default () => {
         else if (!number) setNumberAlert('Please Enter your contact number')
         else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
         else {
-            console.log(true);
+
+          setLoading(true)
+
+            const dataObj = { username: firstName, jobTitle, email, number, password, _id: data._id }
+
+            axios.patch(`${api}/api/employee/profile`, dataObj).then(res => {
+              if (res.data.updated) {
+                setUpdated(true)
+                updatedMsgRef.current.scrollIntoView({behavior: 'smooth'})
+                setLoading(false)
+              }
+            })
         }
     }
 
     return (
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+          {
+            updated ? (
+              <ProfileUpdatedAlert updatedMsgRef={updatedMsgRef} setUpdated={setUpdated} />
+            ) : ''
+          }
             <div className="sm:space-x-3 sm:flex">
               <div>
-                <Input className="" type="text"  labelName="First name" onInput={(e) => setFirstName(e.target.value)} />
+                <Input className="" type="text" defaultValue={firstName} labelName="First name" onInput={(e) => setFirstName(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{firstNameAlert}</span>
               </div>
               <div>
-                <Input className="" type="text" labelName="Job title" onInput={(e) => setJobTitle(e.target.value)} />
+                <Input className="" type="text" defaultValue={jobTitle} labelName="Job title" onInput={(e) => setJobTitle(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{jobTitleAlert}</span>
               </div>
             </div>
             <div>
-                <Input className="" type="email" labelName="Email" onInput={(e) => setEmail(e.target.value)} />
+                <Input className="" type="email" defaultValue={email} labelName="Email" onInput={(e) => setEmail(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{emailAlert}</span>
             </div>
             <div>
-                <Input className="" type="number" labelName="Contact number" onInput={(e) => setNumber(e.target.value)} />
+                <Input className="" type="number" defaultValue={number} labelName="Contact number" onInput={(e) => setNumber(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{numberAlert}</span>
             </div>
             <div className="space-y-1">
                   <label className="text-gray-600 font-medium">Password</label>
                 <div className="flex items-center border rounded-md border-gray-200">
-                  <input className="block border-0 rounded-md px-5 py-2 leading-6 w-full outline-none focus:ring focus:ring-cyan-500 focus:ring-opacity-50" type={state ? 'text' : 'password'} placeholder="Enter your password" 
+                  <input defaultValue={password} className="block border-0 rounded-md px-5 py-2 leading-6 w-full outline-none focus:ring focus:ring-cyan-500 focus:ring-opacity-50" type={state ? 'text' : 'password'} placeholder="Enter your password" 
                     onInput={(e) => setPassWord(e.target.value)}
                  />
                   <button type="button" className="h-full py-2 rounded-md outline-none ring-cyan-500 focus:ring focus:ring-opacity-50"

@@ -1,17 +1,24 @@
-import { useState } from "react"
+import axios from "axios"
+import { useRef, useState } from "react"
 import Input from "../../../components/Input/Input"
-import data from '../../../json/data.json'
+import dataJson from '../../../json/data.json'
+import api from '../../../api/api'
+import ProfileUpdatedAlert from "../../../components/Alerts/ProfileUpdatedAlert"
 
-export default () => {
+export default ({ data }) => {
+
+    const updatedMsgRef = useRef()
 
     const [state, setState] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
-    const [firstName, setFirstName] = useState('')
-    const [email, setEmail] = useState('')
-    const [number, setEmployessNum] = useState('')
-    const [location, setLocation] = useState('')
-    const [about, setAbout] = useState('')
-    const [password, setPassWord] = useState('')
+    const [firstName, setFirstName] = useState(data.companyName)
+    const [email, setEmail] = useState(data.email)
+    const [number, setEmployessNum] = useState(data.members)
+    const [location, setLocation] = useState(data.location)
+    const [about, setAbout] = useState(data.about)
+    const [password, setPassWord] = useState(data.password)
 
     const [firstNameAlert, setFirstNameAlert] = useState('')
     const [emailAlert, setEmailAlert] = useState('')
@@ -37,22 +44,38 @@ export default () => {
         else if (!about) setAboutAlert('This field should not be empty')
         else if (!password || password.length < 8) setPasswordAlert('Password should be not empty and not less than 8 chars')
         else {
-            console.log(true);
+
+          setLoading(true)
+          
+          const dataObj = { companyName: firstName, email, members: number, location, about, password, _id: data._id  }
+
+          axios.patch(`${api}/api/company/profile`, dataObj).then(res => {
+            if (res.data.updated) {
+              setUpdated(true)
+              updatedMsgRef.current.scrollIntoView({behavior: 'smooth'})
+              setLoading(false)
+            }
+          })
         }
     }
 
     return (
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+              {
+                updated ? (
+                  <ProfileUpdatedAlert updatedMsgRef={updatedMsgRef} setUpdated={setUpdated} />
+                ) : ''
+              }
               <div>
-                <Input className="" type="text"  labelName="Company name" onInput={(e) => setFirstName(e.target.value)} />
+                <Input className="" type="text" defaultValue={firstName} labelName="Company name" onInput={(e) => setFirstName(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{firstNameAlert}</span>
               </div>
             <div>
-                <Input className="" type="email" labelName="Email" onInput={(e) => setEmail(e.target.value)} />
+                <Input className="" type="email" defaultValue={email} labelName="Email" onInput={(e) => setEmail(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{emailAlert}</span>
             </div>
             <div>
-                <Input className="" type="number" labelName="Number of employees" onInput={(e) => setEmployessNum(e.target.value)} />
+                <Input className="" type="number" defaultValue={number} labelName="Number of employees" onInput={(e) => setEmployessNum(e.target.value)} />
                 <span className="text-xs text-red-600 my-2 block">{EmployeesNumAlert}</span>
             </div>
             <div className="flex flex-1 items-center border rounded-md relative text-gray-500 p-2 pl-8">
@@ -63,10 +86,10 @@ export default () => {
               <select className="bg-transparent appearance-none text-gray-500 outline-none border-0 w-full"
                   onChange={(e) => setLocation(e.target.value)}
               >
-                  <option selected="true" disabled="true">Select Location</option>
+                  <option selected={location == '' ? true : false} disabled="true">Select Location</option>
                   {
-                    data.locations.sort().map(( items, idx ) => {
-                        return <option value={items} name={items} key={idx}>{ items }</option>
+                    dataJson.locations.sort().map(( items, idx ) => {
+                        return <option selected={location == items ? true : false} value={items} name={items} key={idx}>{ items }</option>
                     })
                   }
               </select>
@@ -79,13 +102,13 @@ export default () => {
                 <label className="font-medium text-gray-600">
                     About the company
                 </label>
-                <textarea className="w-full h-40 mt-1 p-2 border rounded-md outline-none resize-none focus:border-cyan-500" onInput={(e) => setAbout(e.target.value)}></textarea>
+                <textarea defaultValue={ about } className="w-full h-40 mt-1 p-2 border rounded-md outline-none resize-none focus:border-cyan-500" onInput={(e) => setAbout(e.target.value)}></textarea>
                 <span className="block my-2 text-xs text-red-600">{aboutAlert}</span>
             </div>
             <div className="space-y-1">
                   <label className="text-gray-600 font-medium">Password</label>
                 <div className="flex items-center border rounded-md border-gray-200">
-                  <input className="block border-0 rounded-md px-5 py-2 leading-6 w-full outline-none focus:ring focus:ring-cyan-500 focus:ring-opacity-50" type={state ? 'text' : 'password'} placeholder="Enter your password" 
+                  <input defaultValue={ password } className="block border-0 rounded-md px-5 py-2 leading-6 w-full outline-none focus:ring focus:ring-cyan-500 focus:ring-opacity-50" type={state ? 'text' : 'password'} placeholder="Enter your password" 
                     onInput={(e) => setPassWord(e.target.value)}
                  />
                   <button type="button" className="h-full py-2 rounded-md outline-none ring-cyan-500 focus:ring focus:ring-opacity-50"
@@ -108,8 +131,16 @@ export default () => {
                 </div>
                 <span className="text-xs text-red-600 my-2 block">{passwordAlert}</span>
             </div>
-            <button className="w-full py-2 rounded-md bg-cyan-600 text-white m-auto outline-none shadow-md ring-cyan-600 ring-offset-2 focus:ring-2">
-                Update
+            <button className="flex items-center justify-center w-full py-2 rounded-md bg-cyan-600 text-white m-auto outline-none shadow-md ring-cyan-600 ring-offset-2 focus:ring-2">
+              {
+                loading ? (
+                  <svg className="animate-spin mx-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                ) : ''
+              }
+              Update
             </button>
         </form>
     )

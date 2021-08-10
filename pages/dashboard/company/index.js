@@ -12,7 +12,7 @@ const index = ({ data }) => {
             </div>
             <div className="mt-12 mx-4 gap-12 grid-cols-3 sm:grid sm:mx-8">
                 <Sidebar />
-                <Profile />
+                <Profile data={data.userData} />
             </div>
         </LoggedLayout>
     )

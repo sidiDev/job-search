@@ -2,10 +2,18 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import NavLink from '../Links/NavLink'
 import LoggedInLink from '../Links/LoggedInLink'
+import cookie from 'js-cookie'
+import { useRouter } from 'next/dist/client/router'
 
 const Nav = ({ data }) => {
 
     const [state, setState] = useState(false)
+    const router = useRouter()
+
+    const logout = () => {
+        cookie.remove('token')
+        router.push('/')
+    }
 
     useEffect(() => {
         window.onscroll = () => setState(false)
@@ -40,6 +48,18 @@ const Nav = ({ data }) => {
                     <div className={`${state ? 'block' : 'hidden'} absolute z-10 top-12 right-5 p-4 w-60 border rounded-md shadow-md bg-white sm:bg-transparent sm:relative sm:w-auto sm:p-0 sm:shadow-none sm:border-0 sm:top-0 sm:right-0 sm:block`}>
                         <ul className="space-y-4 sm:space-y-0 sm:flex sm:space-x-5">
                             <LoggedInLink data={data} name="Dashboard" pathname={`/dashboard/${data.userData.role}`} />
+                            {
+                                data.loggedIn ? (
+                                    <button className="flex items-center text-gray-700 px-1 rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                                        onClick={logout}
+                                    >
+                                        Loggout
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
+                                        </svg>
+                                    </button>
+                                ) : ''
+                            }
                             <NavLink data={data} name="Login" pathname="/login" />
                             <NavLink data={data} name="Sign up" pathname="/signup" />
                         </ul>

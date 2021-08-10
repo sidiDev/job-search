@@ -3,6 +3,7 @@ import { useRouter } from "next/dist/client/router"
 import { useRef, useState } from "react"
 import cookie from 'js-cookie'
 import api from "../../api/api"
+import Link from "next/link"
 
 export default () => {
 
@@ -112,6 +113,13 @@ export default () => {
                 </div>
               </div>
               <span className="text-xs text-red-600">{passwordAlert}</span>
+              <div>
+                <Link href="/signup">
+                    <a className="text-sm font-medium text-cyan-600 hover:underline">
+                      Create account
+                    </a>
+                </Link>
+              </div>
               <div>
                 <button type="submit" className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none w-full px-4 py-3 leading-6 rounded-md border-cyan-600 bg-cyan-600 text-white hover:bg-cyan-700 hover:border-cyan-700 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 active:bg-cyan-700 active:border-cyan-700">
                   {

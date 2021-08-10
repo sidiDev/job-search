@@ -1,6 +1,7 @@
 import ApplyBtn from "../ApplyBtn/ApplyBtn"
 
-export default () => {
+export default ({ data }) => {
+
     
     return (
         <aside className="top-3 md:sticky md:h-96">
@@ -40,7 +41,7 @@ export default () => {
                     </span>
                 </div>
                 <div className="hidden md:block">
-                    <ApplyBtn w="w-full" />
+                    <ApplyBtn data={data} w="w-full" />
                 </div>
             </div>
         </aside>
