@@ -1,4 +1,4 @@
-export default ({ data, setExpLevel }) => {
+export default ({ data, setExpLevel, defaultValue }) => {
     return (
         <div className="mt-6">
             <span className="text-gray-700 text-lg font-medium">Experience level</span>
@@ -7,7 +7,7 @@ export default ({ data, setExpLevel }) => {
                     data.expLevel.map((items, idx) => {
                         return (
                             <div key={idx} className="radio-container flex items-center mt-2 space-x-1 sm:space-x-2">
-                                <input type="radio" value={items} name="expLevel" id={items} className="w-4 h-4 cursor-pointer outline-none"
+                                <input type="radio" defaultChecked={defaultValue == items ? true : false} value={items} name="expLevel" id={items} className="w-4 h-4 cursor-pointer outline-none"
                                     onChange={(e) => setExpLevel(e.target.value)}
                                 />
                                 <label for={items} className="cursor-pointer text-sm sm:text-base">{items}</label>

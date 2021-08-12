@@ -4,10 +4,13 @@ import Input from "../../../components/Input/Input"
 import dataJson from '../../../json/data.json'
 import api from '../../../api/api'
 import ProfileUpdatedAlert from "../../../components/Alerts/ProfileUpdatedAlert"
+import { useRouter } from "next/dist/client/router"
 
 export default ({ data }) => {
 
     const updatedMsgRef = useRef()
+
+    const router = useRouter()
 
     const [state, setState] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -54,6 +57,8 @@ export default ({ data }) => {
               setUpdated(true)
               updatedMsgRef.current.scrollIntoView({behavior: 'smooth'})
               setLoading(false)
+              router.push('/dashboard/company')
+
             }
           })
         }

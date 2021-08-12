@@ -5,6 +5,8 @@ import SkillsForm from "./SkillsForm"
 
 export default ({ data }) => {
 
+    console.log(new Set());
+
     const [skills, setSkills] = useState([])
     const [newSkills, setNewSkill] = useState([])
     const [inputValue, setInputValue] = useState('')
@@ -12,8 +14,11 @@ export default ({ data }) => {
     const [updated, setUpdated] = useState(false)
     
     const addKill = () => {
-        inputValue ? setNewSkill([...newSkills, inputValue]) : ''
-        setInputValue('')
+        if (inputValue && !skills.includes(inputValue)) {
+            inputValue ? setNewSkill(Array.from(new Set([...newSkills, inputValue]))) : ''
+            setInputValue('')
+        }
+
     }
 
     // Remove skill from client side
@@ -27,20 +32,15 @@ export default ({ data }) => {
     }
 
     // Remove skill from Database
-    const rmSkillFromDb = (idx) => {
+    const rmSkillFromDb = async (idx) => {
 
         
-        axios.delete(`${api}/api/employee/skills/delete`, { idx }).then(res => {
-            const rmSkill = skills.filter(( skill, index ) => {
-                return index != idx
-            })
-    
-            setSkills(rmSkill)
-
-            if (res.data.deleted) {
-                
-            }
+        const rmSkill = skills.filter(( skill, index ) => {
+            return index != idx
         })
+
+        setSkills(rmSkill)
+        await axios.post(`${api}/api/employee/skills/${data._id}`, { skill: skills[idx] })
     }
 
     const update = () => {
@@ -61,11 +61,10 @@ export default ({ data }) => {
 
     useEffect(() => {
 
-        const dataObj = { _id:  data._id}
-        axios.post(`${api}/api/employee/skills`, dataObj).then(res => {
+        axios.get(`${api}/api/employee/skills/${data._id}`).then(res => {
             if (res.data.skills) {
-                console.log(res.data);
-                setSkills(res.data.skills)
+                const skillsArray = Array.from(new Set(res.data.skills))
+                setSkills(skillsArray)
             }
         })
     }, [updated])
@@ -91,7 +90,7 @@ export default ({ data }) => {
                     })
                 }
                 {
-                    newSkills.map(( items, idx ) => {
+                    Array.from(new Set(newSkills)).map(( items, idx ) => {
                         return (
                             <span key={ idx } className="inline-flex mr-3 mt-3 px-3 py-2 rounded bg-gray-100 text-gray-700">
                                 { items }
