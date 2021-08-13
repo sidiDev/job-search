@@ -60,7 +60,7 @@ export default ({ jobs, setState }) => {
                                 <a className="flex">
                                     <div className="w-20 h-20 md:w-22 sm:h-22">
                                         <div className="w-16 h-16">
-                                            <img src={items.company.avatar || '/profile.png'} className="w-full h-full rounded-full" />
+                                            <img src={items.company.avatar} className="w-full h-full rounded-full" />
                                         </div>
                                     </div>
                                     <div className="flex-1 items-center justify-between lg:flex">
@@ -95,7 +95,7 @@ export default ({ jobs, setState }) => {
                                                 {
                                                     items.salary ? (
                                                         <div>
-                                                            <span>${items.salary}<span> / year</span></span>
+                                                            <span>${items.salary}K<span> / year</span></span>
                                                         </div>
                                                     ) : ''
                                                 }

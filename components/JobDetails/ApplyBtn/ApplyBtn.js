@@ -2,7 +2,7 @@ import Link from "next/link"
 import { useState } from "react"
 import CompleteAccountInfo from "../../Modals/CompleteAccountInfo"
 
-export default ({  data, w }) => {
+export default ({  data, w, id }) => {
 
     const [state, setState] = useState(false)
 
@@ -18,7 +18,7 @@ export default ({  data, w }) => {
                             <>
                                 {
                                     data.userData.completed ? (
-                                        <Link href={'/apply/full-stack-developer'}>
+                                        <Link href={`/apply/${id}`}>
                                             <a>
                                                 <button type="submit" className={`${w} mt-3 py-2 rounded-md bg-cyan-600 text-white outline-none shadow-md ring-cyan-600 ring-offset-2 focus:ring-2`}>
                                                     Apply for this job

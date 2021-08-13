@@ -36,6 +36,8 @@ const formats = [
   'bullet',
   'indent',
   'color',
+  'ordered',
+  'align',
   'background'
 ]
 

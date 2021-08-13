@@ -34,8 +34,10 @@ const formats = [
   'blockquote',
   'list',
   'bullet',
+  'ordered',
   'indent',
   'color',
+  'align',
   'background'
 ]
 
