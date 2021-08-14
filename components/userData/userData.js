@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from "axios"
 import api from '../../api/api'
-import { parseCookie } from '../../components/parseCookie/parseCookie'
+import parseCookie from '../parseCookie/parseCookie'
 
-const _userData = (Component, bool) => {
+const userData = (Component, bool) => {
 
   Component.getInitialProps = async ({ req, query }) => {
     const cookie = parseCookie(req)
@@ -19,4 +19,4 @@ const _userData = (Component, bool) => {
   return Component
 }
 
-export default _userData
+export default userData
