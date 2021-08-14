@@ -5,9 +5,9 @@ import JobDetails from "../../components/JobDetails/JobDetails"
 import JobDetailsSide from "../../components/JobDetails/JobDetailsSide/JobDetailsSide"
 import JobHeader from "../../components/JobDetails/JobHeader/JobHeader"
 import Nav from '../../components/Nav/Nav'
-import userData from "../../components/userData/userData"
+import JobData from "../../components/userData/JobData"
 
-const index = ({ data, job }) => {
+const Index = ({ data, job }) => {
     const jobData = job.job
 
     return (
@@ -35,4 +35,4 @@ const index = ({ data, job }) => {
     )
 }
 
-export default userData(index)
+export default JobData(Index)

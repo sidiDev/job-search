@@ -1,8 +1,8 @@
 import axios from "axios"
 import api from '../../api/api'
-import parseCookie from '../parseCookie/parseCookie'
+import { parseCookie } from '../parseCookie/parseCookie'
 
-const userData = (Component, bool) => {
+const jobData = (Component, bool) => {
 
   Component.getInitialProps = async ({ req, query }) => {
     const cookie = parseCookie(req)
@@ -19,4 +19,4 @@ const userData = (Component, bool) => {
   return Component
 }
 
-export default userData
+export default jobData
