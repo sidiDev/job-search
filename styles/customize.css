@@ -68,10 +68,6 @@
     border: solid 6px #06b6d4;
 }
 
-.job-details ul {
-    list-style: outside
-}
-
 /* REACT QUILL CUSTOMIZE */
 
 .ql-editor li:not(.ql-direction-rtl)::before {

@@ -22,10 +22,12 @@ const index = ({ data, job }) => {
             <div className="mt-5 mx-4 sm:mx-8">
                 <JobHeader company={jobData.company} />
                 <main className="mt-12 mb-3">
-                    <article className="grid-cols-3 md:grid md:gap-4 lg:gap-12">
-                        <h1 className="text-2xl font-semibold">{jobData.jobTitle}</h1>
-                        <JobDetailsSide job={jobData} data={data} />
-                        <JobDetails job={jobData} data={data} />
+                    <article>
+                        <h1 className="text-2xl font-semibold mb-5 md:hidden">{jobData.jobTitle}</h1>
+                        <div className="grid-cols-3 md:grid md:gap-4 lg:gap-12">
+                            <JobDetailsSide job={jobData} data={data} />
+                            <JobDetails job={jobData} data={data} />
+                        </div>
                     </article>
                 </main>
             </div>

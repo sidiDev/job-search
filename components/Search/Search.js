@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import data from '../../json/data.json'
 
-export default () => {
+export default ({ inputValue, selectValue }) => {
 
     const [search, setSearch] = useState('')
     const [location, setLocation] = useState('')
@@ -12,21 +12,14 @@ export default () => {
         e.preventDefault()
 
         let { jobType = '', salary = '', expLevel = '' } = router.query
-        // jobType = jobType || { jobType: '' }
-        // salary = salary || { salary: '' }
-        // jobType = jobType || { jobType: '' }
-
+        
         if (search) {
             router.push({
-                // pathname: '/search',
+                pathname: '/search',
                 query: { search, location, jobType, salary, expLevel }
             })
         }
     }
-
-    useEffect(() => {
-        console.log(router.query);
-    }, [router.query])
 
     return (
         <div className="mt-20 bg-white p-4 rounded-md shadow-md mx-4 sm:mx-auto sm:max-w-xl md:max-w-2xl">
@@ -37,6 +30,7 @@ export default () => {
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         <input type="text" placeholder="Job title or keyword"
+                            defaultValue={inputValue}
                             className="bg-transparent placeholder-gray-500 focus:outline-none"
                             onInput={(e) => setSearch(e.target.value)}
                         />
@@ -52,7 +46,7 @@ export default () => {
                             <option selected="true" disabled="true">Select Location</option>
                             {
                                 data.locations.sort().map(( items, idx ) => {
-                                    return <option value={items} name={items} key={idx}>{ items }</option>
+                                    return <option selected={selectValue == items ? items : ''} value={items} name={items} key={idx}>{ items }</option>
                                 })
                             }
                         </select>
