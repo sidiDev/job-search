@@ -7,7 +7,7 @@ import data from '../../../json/data.json'
 export default ({ states }) => {
     
     const { 
-            jobType, setLocation, setJobType, setSalary, setExpLevel, setJobTitle,
+            jobType, expLevel, setLocation, setJobType, setSalary, setExpLevel, setJobTitle,
             jobTitleAlert, locationAlert, jobTypeAlert, salaryAlert, expLevelAlert
         } = states
 
@@ -44,7 +44,7 @@ export default ({ states }) => {
                 <span className="block text-xs text-red-600">{jobTypeAlert}</span>
             </div>
             <div>
-                <ExpLevel data={data} setExpLevel={setExpLevel} />
+                <ExpLevel data={data} defaultValue={expLevel} setExpLevel={setExpLevel} />
                 <span className="block text-xs text-red-600">{expLevelAlert}</span>
             </div>
         </div>

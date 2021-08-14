@@ -68,29 +68,13 @@
     border: solid 6px #06b6d4;
 }
 
+.prose h1, .prose h2, .prose h3,
+.prose h4, .prose h5, .prose h6,
+.prose p, .prose ul {
+    margin: 0 !important;
+}
+
 /* REACT QUILL CUSTOMIZE */
-
-.ql-editor li:not(.ql-direction-rtl)::before {
-    margin-left: -1.5em;
-    margin-right: 0.3em;
-    text-align: right;
-}
-
-.ql-editor ul > li::before {
-    content: '\2022';
-}
-
-.ql-editor .ql-align-center {
-    text-align: center;
-}
-
-.ql-editor .ql-align-right {
-    text-align: right;
-}
-
-.ql-editor .ql-align-justify {
-    text-align: justify;
-}
 
 .ql-container.ql-snow {
     height: 300px !important;

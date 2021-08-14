@@ -22,12 +22,21 @@ function Home({ data }) {
   const [docsCount, setDocsCount] = useState(8)
 
   useEffect(() => {
+
+    setLoading(true)
+
       axios.post(`${api}/api/jobs/search`, { query, count }).then(res => {
-          if (res.data.jobs) {
+        console.log(res.data.jobs)
+          if (res.data.state) {
             setJobs(res.data.jobs)
             setLoading(false)
             seJobStatet(false)
             setDocsCount(res.data.docs)
+          } else if (!res.data.state) {
+            setJobs(res.data.state)
+            setLoading(false)
+            seJobStatet(false)
+            setDocsCount(0)
           }
       })
   }, [query, count])

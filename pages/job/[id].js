@@ -23,7 +23,7 @@ const Index = ({ data, job }) => {
                 <JobHeader company={jobData.company} />
                 <main className="mt-12 mb-3">
                     <article>
-                        <h1 className="text-2xl font-semibold mb-5 md:hidden">{jobData.jobTitle}</h1>
+                        <h1 className="text-2xl font-semibold mb-8 md:hidden">{jobData.jobTitle}</h1>
                         <div className="grid-cols-3 md:grid md:gap-4 lg:gap-12">
                             <JobDetailsSide job={jobData} data={data} />
                             <JobDetails job={jobData} data={data} />

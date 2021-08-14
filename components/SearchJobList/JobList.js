@@ -24,7 +24,27 @@ export default ({
                     <>
 
                         <ul className="space-y-4">
-                            <JobCard jobs={jobs} />
+                            {
+                                !jobs ? (
+                                    <div className="lg:ml-24">
+                                        <p className="text-xl text-gray-500">
+                                            The search did not match any jobs
+                                        </p>
+                                        <span className="block mt-3 text-xl text-gray-900">
+                                            Tips to improve the search
+                                        </span>
+                                        <div className="mt-3 prose">
+                                            <ul>
+                                                <li>Try more general keywords</li>
+                                                <li>Check your spelling</li>
+                                                <li>Replace abbervisations with the entire word</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <JobCard jobs={jobs} />
+                                )
+                            }
                         </ul>
                         {
                             docsCount > count ? (

@@ -95,7 +95,7 @@ const index = ({ data }) => {
                 <form onSubmit={handleSubmit}>
                     <div className="mt-12 mx-4 grid-cols-3 md:gap-8 lg:gap-12 md:grid">
                         <NewJobForm states={ { 
-                            jobType, setLocation, setJobType, setSalary, setExpLevel, setJobTitle,
+                            jobType, expLevel, setLocation, setJobType, setSalary, setExpLevel, setJobTitle,
                             jobTitleAlert, locationAlert, jobTypeAlert, salaryAlert, expLevelAlert
                         } } />
                         <NewJobEditor jobDetailsAlert={ jobDetailsAlert } defaultValue={jobDetails} getContent={(e) => setJobDetails(e)} />
