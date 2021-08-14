@@ -1,6 +1,19 @@
 import '../styles/customize.css'
 import 'tailwindcss/tailwind.css'
 import Head from 'next/head'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import Router from 'next/router'
+
+NProgress.configure({
+  minimum: 0.3,
+  easing: 'ease',
+  showSpinner: false
+})
+
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeError', () => NProgress.done())
+Router.events.on('routeChangeComplete', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
   

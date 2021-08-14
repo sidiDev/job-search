@@ -3,7 +3,7 @@ import SalaryRange from "./SalaryRange"
 import data from '../../json/data.json'
 import ExpLevel from "./ExpLevel"
 import SubmitBtns from "./SubmitBtns"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/dist/client/router"
 
 export default ({ setState, enableScrolling }) => {
@@ -13,6 +13,8 @@ export default ({ setState, enableScrolling }) => {
     const [expLevel, setExpLevel] = useState('')
 
     const router = useRouter()
+
+    const { query } = router
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,6 +28,18 @@ export default ({ setState, enableScrolling }) => {
             })
         }
     }
+
+    useEffect(() => {
+        if (query) {
+            setJobType(query.jobType)
+            setSalary(query.salary)
+            setExpLevel(query.expLevel)
+        } else {
+            setJobType('')
+            setSalary('')
+            setExpLevel('')
+        }
+    }, [query])
 
     return (
         <div className="bg-white pb-3 md:top-3 flex-1 md:max-w-sm lg:max-w-lg md:sticky md:h-96">
@@ -42,9 +56,9 @@ export default ({ setState, enableScrolling }) => {
                 </button>
             </div>
             <form onSubmit={handleSubmit}>
-                <SalaryRange setSalary={setSalary} />
+                <SalaryRange defaultValue={salary} setSalary={setSalary} />
                 <JobType setJobType={setJobType} jobType={jobType} data={data} />
-                <ExpLevel setExpLevel={setExpLevel} data={data} />
+                <ExpLevel defaultValue={expLevel} setExpLevel={setExpLevel} data={data} />
                 <SubmitBtns 
                     setState={setState}
                     enableScrolling={enableScrolling} 

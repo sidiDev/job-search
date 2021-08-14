@@ -1,5 +1,5 @@
 import ApplyBtn from "./ApplyBtn/ApplyBtn"
-import Details from "./Details/Details"
+import Details from "../../sideComponents/Details/Details"
 
 export default ({ data, job }) => {
     return (

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import SearchFilter from '../../components/SearchFilter/SearchFilter'
 import SearchJobList from '../../components/SearchJobList/JobList'
 import Nav from '../../components/Nav/Nav'
 import UserData from '../../components/userData/UserData'
@@ -7,6 +6,7 @@ import Search from '../../components/Search/Search'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import api from '../../api/api'
+import Filter from '../../components/Filter/Filter'
 
 function Home({ data }) {
 
@@ -61,7 +61,7 @@ function Home({ data }) {
           <div className={`${state ? 'block' : 'hidden'} fixed z-10 left-0 bottom-0 pt-3 px-4 w-full rounded-t-3xl bg-white duration-300 sm:static sm:pt-0 sm:pb-0 sm:px-0 sm:w-auto md:block`}
             style={state ? {bottom: '0'} : {bottom: '-38em'}}
           >
-            <SearchFilter 
+            <Filter 
               setState={setState} 
               enableScrolling={enableScrolling}
             />

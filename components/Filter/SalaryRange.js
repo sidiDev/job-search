@@ -17,7 +17,7 @@ export default ({ setSalary, defaultValue }) => {
             rangeRef.current.style = `width: ${+defaultValue / 2.5}%; background: #06b6d4`
             inputRef.current.value = +defaultValue / 2.5
         }
-    }, [])
+    }, [defaultValue])
 
     return (
         <div className="salary-range-container">

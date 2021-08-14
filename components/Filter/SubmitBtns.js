@@ -13,11 +13,14 @@ export default ({ setState, enableScrolling }) => {
         
         if (search) {
             router.push({
-                pathname: '/',
+                pathname: '/search',
                 query: { search, location }
             })
         } else {
-            router.push('/')
+            router.push({
+                pathname: '/',
+                query: ''
+            })
         }
     }
 
