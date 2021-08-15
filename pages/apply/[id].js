@@ -13,7 +13,7 @@ const index = ({ data }) => {
             <div className="shadow pb-6">
                 <Nav data={data} />
             </div>
-            <ApplyForm />
+            <ApplyForm data={data.userData} />
         </LoggedLayout>
     )
 }

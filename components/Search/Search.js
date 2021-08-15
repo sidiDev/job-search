@@ -2,11 +2,13 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import data from '../../json/data.json'
 
-export default ({ inputValue, selectValue }) => {
+export default () => {
 
     const [search, setSearch] = useState('')
     const [location, setLocation] = useState('')
     const router = useRouter()
+
+    const { query } = router
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -16,10 +18,22 @@ export default ({ inputValue, selectValue }) => {
         if (search) {
             router.push({
                 pathname: '/search',
-                query: { search, location, jobType, salary, expLevel }
+                query: { search, location, jobType, salary, expLevel },
             })
         }
     }
+
+    useEffect(() => {
+
+        if (query) {
+            setSearch(query.search)
+            setLocation(query.location)
+        } else {
+            setSearch('')
+            setLocation('')
+        }
+
+    }, [query])
 
     return (
         <div className="mt-20 bg-white p-4 rounded-md shadow-md mx-4 sm:mx-auto sm:max-w-xl md:max-w-2xl">
@@ -30,7 +44,7 @@ export default ({ inputValue, selectValue }) => {
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         <input type="text" placeholder="Job title or keyword"
-                            defaultValue={inputValue}
+                            value={search}
                             className="bg-transparent placeholder-gray-500 focus:outline-none"
                             onInput={(e) => setSearch(e.target.value)}
                         />
@@ -46,7 +60,7 @@ export default ({ inputValue, selectValue }) => {
                             <option selected="true" disabled="true">Select Location</option>
                             {
                                 data.locations.sort().map(( items, idx ) => {
-                                    return <option selected={selectValue == items ? items : ''} value={items} name={items} key={idx}>{ items }</option>
+                                    return <option selected={location == items ? true : false} value={items} name={items} key={idx}>{ items }</option>
                                 })
                             }
                         </select>

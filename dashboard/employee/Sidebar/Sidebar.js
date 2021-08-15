@@ -23,7 +23,7 @@ export default ({ data }) => {
                     </Link>
                 </li>
                 <li className="p-4 hover:bg-gray-50">
-                    <Link href="/dashboard/employee/jobs">
+                    <Link href={`/dashboard/employee/jobs/${data._id}`}>
                         <a className="flex items-center text-gray-500">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                               <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />

@@ -9,7 +9,8 @@ export default ({
     loading,
     state,
     docsCount,
-    jobs
+    jobs,
+    increaseCount
 }) => {
 
 
