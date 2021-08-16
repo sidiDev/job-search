@@ -1,12 +1,12 @@
 import Nav from "../../../components/Nav/Nav"
 import Sidebar from "../../../dashboard/company/Sidebar/Sidebar"
 import Profile from "../../../dashboard/company/Profile/Profile"
-import LoggedLayout from '../../../components/Layouts/LoggedLayout'
 import userData from "../../../components/userData/UserData"
+import CompanyLayout from "../../../components/Layouts/CompanyLayout"
 
 const index = ({ data }) => {
     return (
-        <LoggedLayout data={data}>
+        <CompanyLayout data={data}>
             <div className="shadow pb-6">
                 <Nav data={data} />
             </div>
@@ -14,7 +14,7 @@ const index = ({ data }) => {
                 <Sidebar data={data} />
                 <Profile data={data.userData} />
             </div>
-        </LoggedLayout>
+        </CompanyLayout>
     )
 }
 

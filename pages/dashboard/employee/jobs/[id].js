@@ -2,11 +2,11 @@ import Nav from "../../../../components/Nav/Nav"
 import Jobs from "../../../../dashboard/employee/Jobs/Jobs"
 import Sidebar from "../../../../dashboard/employee/Sidebar/Sidebar"
 import userData from "../../../../components/userData/UserData"
-import LoggedLayout from "../../../../components/Layouts/LoggedLayout"
+import EmployeeLayout from "../../../../components/Layouts/EmployeeLayout"
 
 const index = ({ data }) => {
     return (
-        <LoggedLayout data={data}>
+        <EmployeeLayout data={data}>
             <div className="shadow pb-6">
                 <Nav data={data} />
             </div>
@@ -14,7 +14,7 @@ const index = ({ data }) => {
                 <Sidebar data={data.userData} />
                 <Jobs userId={data.userData._id} />
             </div>
-        </LoggedLayout>
+        </EmployeeLayout>
     )
 }
 

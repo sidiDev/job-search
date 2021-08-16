@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import Nav from "../../../../components/Nav/Nav"
 import userData from "../../../../components/userData/UserData"
-import LoggedLayout from "../../../../components/Layouts/LoggedLayout"
+import CompanyLayout from "../../../../components/Layouts/CompanyLayout"
 import axios from "axios"
 import api from "../../../../api/api"
 import { useRouter } from "next/dist/client/router"
@@ -91,7 +91,7 @@ const index = ({ data }) => {
     }, [])
 
     return (
-        <LoggedLayout data={data}>
+        <CompanyLayout data={data}>
             {
                 job ? (
                     <div className="mb-3">
@@ -134,14 +134,14 @@ const index = ({ data }) => {
                                         </svg>
                                         ) : ''
                                     }
-                                    Post
+                                    Update
                                 </button>
                             </div>
                         </form>
                     </div>
                 ) : ''
             }
-        </LoggedLayout>
+        </CompanyLayout>
     )
 }
 

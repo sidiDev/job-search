@@ -12,6 +12,8 @@ export default ({ data }) => {
     const [loading, setLoading] = useState(false)
     const [state, setState] = useState(false)
 
+    const [companyId, setCompanyId] = useState('')
+
     const [file, setFile] = useState()
     const [fileName, setFileName] = useState('')
     const [email, setEmail] = useState('')
@@ -23,7 +25,12 @@ export default ({ data }) => {
     
     useEffect(() => {
         axios.get(`${api}/api/employee/apply/${id}`).then(res => {
-            if (!res.data.exist) router.push('/')
+            if (res.data.companyId) {
+                setCompanyId(res.data.companyId)
+            }
+            else if (!res.data.exist) {
+                router.push('/')
+            }
         })
     }, [])
 
@@ -50,6 +57,7 @@ export default ({ data }) => {
             formaDta.append('email', email)
             formaDta.append('about', about)
             formaDta.append('jobId', id)
+            formaDta.append('companyId', companyId)
             formaDta.append('applicantId', data._id)
 
             axios.post(`${api}/api/employee/apply`, formaDta).then(res => {
@@ -65,7 +73,7 @@ export default ({ data }) => {
 
                     setTimeout(() => {
                         setState(false)
-                    }, 2000)
+                    }, 3000)
                 }
             })
         }

@@ -20,6 +20,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className="font-sans">
       <Head>
+        <meta property="og:site_name" content="USA job search" />
+        <meta property="og:image" content='' />
         <meta name="keyword" content="" />
         <meta name="description" content="" />
         <title>USA job search </title>

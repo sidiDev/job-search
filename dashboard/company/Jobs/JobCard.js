@@ -4,33 +4,27 @@ import Link from "next/link"
 import { useState } from "react"
 import api from "../../../api/api"
 import LoadingAlert from "../../../components/Alerts/LoadingAlert"
+import DangerModal from "../../../components/Modals/DangerModal"
 
 export default ({ jobs, setState }) => {
 
     const [deleted, setDeleted] = useState(false)
-    const [idx, setIdx] = useState(false)
+    const [modal, setModal] = useState(false)
+    const [id, setId] = useState('')
 
-    const deleteJob = (id) => {
+    const deleteJob = () => {
 
-        setDeleted(true)
-        setState(true)
-
-        axios.delete(`${api}/api/company/jobs/${id}`).then(res => {
-            if (res.data.deleted) {
-                setState(false)
-                setDeleted(false)
-            }
-        })
-    }
-
-    const deleteLoading = () => {
-        if (deleted) {
-            return (
-                <LoadingAlert 
-                    p="Removing job"
-                    className="fixed top-28 right-12 z-10 bg-white"
-                />
-            )
+        if (id) {
+            setDeleted(true)
+            setState(true)
+            setModal(false)
+    
+            axios.delete(`${api}/api/company/jobs/${id}`).then(res => {
+                if (res.data.deleted) {
+                    setState(false)
+                    setDeleted(false)
+                }
+            })
         }
     }
 
@@ -42,7 +36,10 @@ export default ({ jobs, setState }) => {
                         <li key={key} className="shadow-md p-3 rounded-md border duration-300 relative hover:shadow-none hover:border-cyan-600">
                             <div className="absolute -top-4 right-2 flex space-x-3">
                                 <button className="flex items-center justify-center w-8 h-8 text-red-600 bg-white rounded-full shadow border outline-none focus:ring-1 ring-cyan-600 ring-offset-1"
-                                    onClick={() => deleteJob(items._id)}
+                                    onClick={() => {
+                                        setModal(true)
+                                        setId(items._id)
+                                    }}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
@@ -121,7 +118,25 @@ export default ({ jobs, setState }) => {
                     )
                 })
             }
-            { deleteLoading() }
+            {
+                deleted ? (
+                    <LoadingAlert
+                        p="Removing job"
+                        className="fixed top-28 right-12 z-10 bg-white"
+                    />
+                ) : ''
+            }
+            {
+                modal ? (
+                    <DangerModal
+                        headerP="Delete the item"
+                        p="Are you sure you want to delete this item ?"
+                        submitP="Delete"
+                        submit={deleteJob}
+                        setState={setModal}
+                    />
+                ) : ''
+            }
         </>
     )
 }

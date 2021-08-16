@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import Nav from "../../../../components/Nav/Nav"
 import userData from "../../../../components/userData/UserData"
-import LoggedLayout from "../../../../components/Layouts/LoggedLayout"
+import CompanyLayout from "../../../../components/Layouts/CompanyLayout"
 import NewJobEditor from "../../../../dashboard/company/PostNewJob/NewJobEditor"
 import NewJobForm from "../../../../dashboard/company/PostNewJob/NewJobForm"
 import axios from "axios"
@@ -75,7 +75,7 @@ const index = ({ data }) => {
     }
 
     return (
-        <LoggedLayout data={data}>
+        <CompanyLayout data={data}>
             <div className="mb-3">
                 <div className="shadow pb-6">
                     <Nav data={data} />
@@ -115,7 +115,7 @@ const index = ({ data }) => {
                     </div>
                 </form>
             </div>
-        </LoggedLayout>
+        </CompanyLayout>
     )
 }
 
