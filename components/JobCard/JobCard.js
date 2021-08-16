@@ -12,8 +12,8 @@ export default ({ jobs }) => {
                                 <Link href={`/job/${items._id}`}>
                                     <a className="flex">
                                         <div className="w-20 h-20 md:w-22 sm:h-22">
-                                            <div className="w-16 h-16 rounded-full border-2">
-                                                <img src={items.company.avatar} className="w-full h-full rounded-full" />
+                                            <div className="w-16 h-16 p-1 rounded-full border-2">
+                                                <img src={items.company.avatar} alt={items.jobTitle} className="w-full h-full rounded-full" />
                                             </div>
                                         </div>
                                         <div className="flex-1 items-center justify-between xl:flex">
