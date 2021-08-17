@@ -45,7 +45,7 @@ export default ({ jobs }) => {
                                             </div>
                                             <div className="mt-2 space-y-2 items-center text-gray-500 sm:space-y-0 sm:flex sm:space-x-2 md:block md:space-x-0 md:space-y-2 lg:space-x-4 lg:flex lg:space-y-0 xl:block xl:space-x-0 xl:space-y-2">
                                                 {
-                                                    items.salary ? (
+                                                    items.salary && items.salary != 0 ? (
                                                         <div className="flex items-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                                                 <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />

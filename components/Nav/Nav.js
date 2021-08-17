@@ -23,8 +23,8 @@ const Nav = ({ data }) => {
         <nav>
             <div className="flex justify-between items-center pt-6 mx-4 sm:mx-8">
                 <div className="flex items-center space-x-6 md:space-x-12">
-                    <a href="/" className="flex items-center">
-                        <div className="w-16 h-16 rounded-full">
+                    <a href="/" className="flex items-center h-8">
+                        <div className="w-14 h-14 rounded-full">
                             <img src="/logo.png" className="w-full h-full rounded-full" alt="logo" />
                         </div>
                         <span className="font-medium text-xl"><span className="text-cyan-500">USA</span>Jobs</span>

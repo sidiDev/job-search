@@ -1,7 +1,5 @@
 export default ({ company }) => {
 
-    console.log(company);
-
     return (
         <header className="pb-8 border-b-2 border-gray-100">
             <div className="max-w-xl">
