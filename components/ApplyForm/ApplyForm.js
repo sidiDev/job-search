@@ -25,7 +25,7 @@ export default ({ data }) => {
     
     useEffect(() => {
         axios.get(`${api}/api/employee/apply/${id}`).then(res => {
-            if (res.data.companyId) {
+            if (res.data.companyId != '') {
                 setCompanyId(res.data.companyId)
             } else {
                 router.push('/')
