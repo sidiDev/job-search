@@ -18,24 +18,22 @@ function Home({ data }) {
   const [count, setCount] = useState(8)
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
-  const [jobState, seJobStatet] = useState(false)
-  const [docsCount, setDocsCount] = useState(8)
+  const [jobState, seJobState] = useState(false)
+  const [hideMore, setHideMore] = useState(false)
 
   useEffect(() => {
     
-    setLoading(true)
-
       axios.post(`${api}/api/jobs/search`, { query, count }).then(res => {
         console.log(res.data.jobs)
           if (res.data.state) {
             setJobs(res.data.jobs)
+            count >= res.data.docs ? setHideMore(true) : setHideMore(false)
             setLoading(false)
-            seJobStatet(false)
-            setDocsCount(res.data.docs)
+            seJobState(false)
           } else if (!res.data.state) {
             setJobs(res.data.state)
             setLoading(false)
-            seJobStatet(false)
+            seJobState(false)
             setDocsCount(0)
           }
       })
@@ -43,7 +41,7 @@ function Home({ data }) {
 
     const increaseCount = () => {
         setCount(count + 8)
-        setState(true)
+        seJobState(true)
     }
 
   
@@ -77,10 +75,9 @@ function Home({ data }) {
           </div>
           <SearchJobList  
             jobs={jobs}
-            count={count}
             loading={loading}
             state={jobState}
-            docsCount={docsCount}
+            hideMore={hideMore}
             increaseCount={increaseCount}
           />
         </div>

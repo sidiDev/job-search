@@ -1,14 +1,11 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
-import api from "../../api/api"
 import JobCard from "../JobCard/JobCard"
 import LoadingJob from "../LoadingJob/LoadingJob"
 
 export default ({ 
-    count,
     loading,
     state,
-    docsCount,
+    hideMore,
     jobs,
     increaseCount
 }) => {
@@ -48,7 +45,7 @@ export default ({
                             }
                         </ul>
                         {
-                            docsCount > count ? (
+                            hideMore ? '' : (
                                 <button className="flex items-center justify-center w-full text-white bg-cyan-600 p-2 px-4 mx-auto rounded-md outline-none ring-cyan-600 ring-offset-2 focus:ring-2 md:px-8 md:w-36 my-3"
                                     onClick={increaseCount}
                                 >
@@ -62,7 +59,7 @@ export default ({
                                     }
                                     More
                                 </button>
-                            ) : ''
+                            )
                         }
                     </>
                 )
