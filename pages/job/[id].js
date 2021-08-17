@@ -13,7 +13,7 @@ const Index = ({ data, job }) => {
     return (
         <>
         <Head>
-            <meta name="description" content="" />
+            <meta name="description" content={jobData.company.about} />
             <title>{jobData.jobTitle}</title>
         </Head>
             <div className="shadow pb-6">
