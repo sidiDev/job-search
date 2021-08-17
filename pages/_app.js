@@ -17,25 +17,9 @@ Router.events.on('routeChangeError', () => NProgress.done())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
-
-  // Service worker
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register("/sw.js").then((registration) => {
-          console.log(
-            "ServiceWorker registration successful with scope: ",
-            registration.scope
-          )
-        }, err => {
-          console.log("ServiceWorker registration failed");
-        })
-      })
-    }
-  }, [])
   
   return (
-    <div className="font-sans">
+    <div className="font-sans max-w-screen-xl mx-auto">
       <Head>
         <meta property="og:site_name" content="USA job search" />
         <meta property="og:image" content="/cover.png" />
