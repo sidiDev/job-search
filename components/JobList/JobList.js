@@ -10,16 +10,16 @@ export default () => {
     const [jobs, setJobs] = useState([])
     const [loading, setLoading] = useState(true)
     const [state, setState] = useState(false)
-    const [docsCount, setDocsCount] = useState(8)
+    const [hideMore, setHideMore] = useState(false)
 
     useEffect(() => {
 
         axios.post(`${api}/api/jobs`, {count}).then(res => {
             if (res.data.jobs) {
                 setJobs(res.data.jobs)
+                count >= res.data.docs ? setHideMore(true) : setHideMore(false)
                 setLoading(false)
                 setState(false)
-                setDocsCount(res.data.docs)
             }
 
         })
@@ -45,7 +45,7 @@ export default () => {
                             <JobCard jobs={jobs} />
                         </ul>
                         {
-                            count <= docsCount ? (
+                            hideMore ? '' : (
                                 <button className="flex items-center justify-center w-full text-white bg-cyan-600 p-2 px-4 mx-auto rounded-md outline-none ring-cyan-600 ring-offset-2 focus:ring-2 md:px-8 md:w-36 my-3"
                                     onClick={increaseCount}
                                 >
@@ -59,7 +59,7 @@ export default () => {
                                     }
                                     More
                                 </button>
-                            ) : ''
+                            )
                         }
                     </>
                 )
