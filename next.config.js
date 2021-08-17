@@ -1,5 +1,5 @@
-const withPWA = require("next-pwa");
-const runtimeCaching = require('next-pwa/cache')
+// const withPWA = require("next-pwa");
+// const runtimeCaching = require('next-pwa/cache')
 
 module.exports = {
     env: {
@@ -7,10 +7,10 @@ module.exports = {
     }
 }
 
-module.exports = withPWA({
-  pwa: {
-    dest: "public",
-    register: true,
-    runtimeCaching
-  },
-});
+// module.exports = withPWA({
+//   pwa: {
+//     dest: "public",
+//     register: true,
+//     runtimeCaching
+//   },
+// });
