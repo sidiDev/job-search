@@ -45,7 +45,7 @@ export default () => {
                             <JobCard jobs={jobs} />
                         </ul>
                         {
-                            docsCount > count ? (
+                            count <= docsCount ? (
                                 <button className="flex items-center justify-center w-full text-white bg-cyan-600 p-2 px-4 mx-auto rounded-md outline-none ring-cyan-600 ring-offset-2 focus:ring-2 md:px-8 md:w-36 my-3"
                                     onClick={increaseCount}
                                 >
