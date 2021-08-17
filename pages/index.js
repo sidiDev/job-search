@@ -9,7 +9,7 @@ function Home({ data }) {
 
   const [state, setState] = useState(false)
 
-  const enableScrolling = () => document.body.className = 'sm:overflow-auto'
+  const enableScrolling = () => document.body.className = 'overflow-auto'
   
   return (
     <div>
