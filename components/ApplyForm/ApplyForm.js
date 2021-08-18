@@ -29,8 +29,6 @@ export default ({ data }) => {
             setFetchDataLoading(false)
             if (res.data.state) {
                 setCompanyId(res.data.companyId)
-            } else if (!fetchDataLoading && !res.data.state) {
-                router.push('/')
             }
         })
     }, [])
