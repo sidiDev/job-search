@@ -48,7 +48,7 @@ export default () => {
                 expires: 6000000 * 15 * 5
               })
 
-              router.push(`/dashboard/${res.data.pathname}`)
+              router.replace(`/dashboard/${res.data.pathname}`)
             } else {
               setErrorMsg(true)
               errorMsgRef.current.scrollIntoView({behavior: 'smooth'})

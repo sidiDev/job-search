@@ -1,17 +1,13 @@
 import axios from "axios";
-import { useRouter } from "next/dist/client/router";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import api from '../../api/api'
 
 export default ({ data, companyId }) => {
 
-    const router = useRouter()
     const applyRef = useRef()
-    const { id } = router.query
 
     const [loading, setLoading] = useState(false)
     const [state, setState] = useState(false)
-    const [fetchDataLoading, setFetchDataLoading] = useState(true)
 
 
     const [file, setFile] = useState()
@@ -22,16 +18,6 @@ export default ({ data, companyId }) => {
     const [fileAlert, setFileAlert] = useState('')
     const [emailAlert, setEmailAlert] = useState('')
     const [aboutAlert, setAboutAlert] = useState('')
-    
-    // useEffect(() => {
-    //     axios.get(`${api}/api/employee/apply/${id}`).then(res => {
-    //         console.log(res.data)
-    //         if (res.data.state) {
-    //             setFetchDataLoading(false)
-    //             setCompanyId(res.data.companyId)
-    //         }
-    //     })
-    // }, [router.query])
 
     const uploadFile = (e) => {
         const file = e.target.files

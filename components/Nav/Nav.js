@@ -12,7 +12,7 @@ const Nav = ({ data }) => {
 
     const logout = () => {
         cookie.remove('token')
-        router.push('/')
+        router.replace('/')
     }
 
     useEffect(() => {
