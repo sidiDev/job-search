@@ -26,10 +26,10 @@ export default ({ data }) => {
     
     useEffect(() => {
         axios.get(`${api}/api/employee/apply/${id}`).then(res => {
+            setFetchDataLoading(false)
             if (res.data.state) {
                 setCompanyId(res.data.companyId)
-                setFetchDataLoading(false)
-            } else if (!res.data.state) {
+            } else if (!fetchDataLoading && !res.data.state) {
                 router.push('/')
             }
         })
