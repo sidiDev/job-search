@@ -47,7 +47,7 @@ export default ({ state, setState, applicantInfo }) => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="flex items-center justify-center">
+                                        <div className="flex items-center justify-center py-2">
                                             <Link href={`/job/${items.job}`}>
                                                 <a className="p-2 px-4 mx-auto text-white bg-cyan-500 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
                                                     View job

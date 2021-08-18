@@ -50,7 +50,7 @@ export default () => {
                 expires: 6000000 * 15 * 5
               })
 
-              router.replace(`/dashboard/${res.data.pathname}`)
+              router.push(`/dashboard/${res.data.pathname}`)
             }
 
           })

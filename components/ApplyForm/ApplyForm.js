@@ -1,10 +1,14 @@
 import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 import { useRef, useState } from "react";
 import api from '../../api/api'
 
 export default ({ data, companyId }) => {
 
     const applyRef = useRef()
+
+    const router = useRouter()
+    const { id } = router.query
 
     const [loading, setLoading] = useState(false)
     const [state, setState] = useState(false)
