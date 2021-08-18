@@ -36,14 +36,10 @@ export default ({ data, companyId }) => {
         else if (!about) setAboutAlert('This field should not be empty')
         else {
             setLoading(true)
-            const formaDta = new FormData()
-            formaDta.append('email', email)
-            formaDta.append('about', about)
-            formaDta.append('jobId', id)
-            formaDta.append('companyId', companyId)
-            formaDta.append('applicantId', data._id)
 
-            axios.post(`${api}/api/employee/apply`, formaDta).then(res => {
+            const dataOb = { email, about, jobId: id, companyId, applicantId: data._id }
+
+            axios.post(`${api}/api/employee/apply`, dataOb).then(res => {
                 setLoading(false)
 
                 if (res.data.submited) {
