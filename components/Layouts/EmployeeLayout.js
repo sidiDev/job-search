@@ -7,7 +7,7 @@ const EmployeeLayout = ({ children, data }) => {
         data.userData.role == 'employee' ? (
             children
         ) : ''
-    ) : router.push('')
+    ) : router.push('/')
 }
 
 export default EmployeeLayout
