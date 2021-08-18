@@ -29,7 +29,7 @@ export default ({ data }) => {
             if (res.data.state) {
                 setFetchDataLoading(false)
                 setCompanyId(res.data.companyId)
-            } else if (!res.data.state) return router.push('/')
+            }
         })
     }, [router.query])
 
@@ -102,6 +102,7 @@ export default ({ data }) => {
                         }
                         <form onSubmit={handleSubmit}>
                             <div>
+                                <p className="text-xl">{companyId}</p>
                                 <div className="text-center w-full border-2 border-dashed rounded-md py-12 px-4">
                                     <label for="file">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 m-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
