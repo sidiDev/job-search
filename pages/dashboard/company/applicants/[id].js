@@ -20,12 +20,6 @@ const index = ({ data }) => {
     const [applicantInfo, setApplicantInfo] = useState([])
 
     useEffect(() => {
-        state ? 
-        (document.body.className = 'overflow-hidden sm:overflow-auto') : 
-        ( document.body.className = 'overflow-auto' )
-    }, [state])
-
-    useEffect(() => {
         axios.get(`${api}/api/company/applicants/${id}`).then(res => {
             if (res.data.applicants) {
                 setApplicants(res.data.applicants)
