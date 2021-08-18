@@ -26,7 +26,7 @@ export default ({ data }) => {
     
     useEffect(() => {
         axios.get(`${api}/api/employee/apply/${id}`).then(res => {
-            if (res.data.status) {
+            if (res.data.state) {
                 setCompanyId(res.data.companyId)
                 setFetchDataLoading(false)
             } else {
