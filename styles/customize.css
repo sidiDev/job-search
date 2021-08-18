@@ -1,3 +1,7 @@
+.prose {
+    max-width: unset !important;
+}
+
 /* THUMB */
 
 .salary-range-container
