@@ -1,4 +1,2 @@
-const api = 'https://job-search-api-v1.herokuapp.com'
-//'http://localhost:8000'
-//'https://job-search-api-v1.herokuapp.com'
+const api = process.env.API || 'http://localhost:8000'
 export default api
