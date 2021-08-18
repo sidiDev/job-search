@@ -2,9 +2,10 @@ import Head from "next/head"
 import ApplyForm from "../../components/ApplyForm/ApplyForm"
 import Nav from '../../components/Nav/Nav'
 import EmployeeLayout from '../../components/Layouts/EmployeeLayout'
-import userData from "../../components/userData/UserData"
+import applyData from "../../components/userData/ApplyData"
+import Page404 from "../../components/PageError/Page404"
 
-const index = ({ data }) => {
+const index = ({ data, companyId }) => {
     return (
         <EmployeeLayout data={data}>
             <Head>
@@ -13,9 +14,13 @@ const index = ({ data }) => {
             <div className="shadow pb-6">
                 <Nav data={data} />
             </div>
-            <ApplyForm data={data.userData} />
+            {
+                companyId.state ? (
+                    <ApplyForm data={data.userData} companyId={companyId.companyId} />
+                ) : <Page404 />
+            }
         </EmployeeLayout>
     )
 }
 
-export default userData(index)
+export default applyData(index)
