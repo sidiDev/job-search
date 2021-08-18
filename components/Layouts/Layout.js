@@ -1,5 +1,8 @@
+import { useRouter } from "next/dist/client/router"
+
 const Layout = ({ children, data }) => {
-    return data.loggedIn ? '' : children
+    const router = useRouter()
+    return data.loggedIn ? router.push('') : children
 }
 
 export default Layout
