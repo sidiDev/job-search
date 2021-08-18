@@ -9,7 +9,7 @@ export default ({ data, job }) => {
                 <Details job={job} />
             </div>
             <div className="fixed left-0 right-0 mx-4 bottom-2 sm:static sm:mx-0">
-                <ApplyBtn data={data} w="w-full py-3 sm:px-12 sm:w-auto md:hidden" />
+                <ApplyBtn id={job._id} data={data} w="w-full py-3 sm:px-12 sm:w-auto md:hidden" />
             </div>
         </div>
     )
