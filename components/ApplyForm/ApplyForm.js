@@ -29,7 +29,7 @@ export default ({ data }) => {
             if (res.data.state) {
                 setCompanyId(res.data.companyId)
                 setFetchDataLoading(false)
-            } else {
+            } else if (!fetchDataLoading && !res.data.state) {
                 router.push('/')
             }
         })
