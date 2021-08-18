@@ -32,13 +32,11 @@ export default ({ data, companyId }) => {
         setEmailAlert('')
         setAboutAlert('')
 
-        if (!file) setFileAlert('Please upload a file')
-        else if (!email) setEmailAlert('Please Enter your email')
+        if (!email) setEmailAlert('Please Enter your email')
         else if (!about) setAboutAlert('This field should not be empty')
         else {
             setLoading(true)
             const formaDta = new FormData()
-            formaDta.append('file', file)
             formaDta.append('email', email)
             formaDta.append('about', about)
             formaDta.append('jobId', id)
@@ -81,7 +79,7 @@ export default ({ data, companyId }) => {
             }
             <form onSubmit={handleSubmit}>
                 <div>
-                    <div className="text-center w-full border-2 border-dashed rounded-md py-12 px-4">
+                    {/* <div className="text-center w-full border-2 border-dashed rounded-md py-12 px-4">
                         <label for="file">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 m-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
@@ -103,7 +101,7 @@ export default ({ data, companyId }) => {
                             onChange={uploadFile}
                         />
                     </div>
-                    <span className="text-xs text-red-600">{fileAlert}</span>
+                    <span className="text-xs text-red-600">{fileAlert}</span> */}
                     <div className="mt-4">
                         <label className="text-gray-500">Email</label>
                         <input type="email" value={email} placeholder="Enter your email" className="mt-1 w-full p-2 border outline-none rounded-md focus:border-cyan-500" 
@@ -113,7 +111,7 @@ export default ({ data, companyId }) => {
                     </div>
                     <div className="mt-4">
                         <label className="text-gray-500">
-                            About you
+                            About you - Include ( About your self, Skills, Years of experience ...etc)
                         </label>
                         <textarea value={about} className="w-full h-48 mt-1 border rounded-md outline-none resize-none focus:border-cyan-500" onInput={(e) => setAbout(e.target.value)}></textarea>
                         <span className="block my-2 text-xs text-red-600">{aboutAlert}</span>
