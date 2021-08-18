@@ -29,9 +29,9 @@ export default ({ data }) => {
             if (res.data.state) {
                 setFetchDataLoading(false)
                 setCompanyId(res.data.companyId)
-            }
+            } else if (!res.data.state) return router.push('/')
         })
-    }, [])
+    }, [router.query])
 
     const uploadFile = (e) => {
         const file = e.target.files

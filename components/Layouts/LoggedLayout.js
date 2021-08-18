@@ -1,8 +1,7 @@
-import { useRouter } from "next/dist/client/router"
+import Page404 from "../PageError/Page404"
 
 const LoggedLayout = ({ children, data }) => {
-    const router = useRouter()
-    return data.loggedIn ? children : router.push('/')
+    return data.loggedIn ? children : <Page404 />
 }
 
 export default LoggedLayout

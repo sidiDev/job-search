@@ -19,7 +19,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 function MyApp({ Component, pageProps }) {
   
   return (
-    <div className="font-sans max-w-screen-xl mx-auto">
+    <div className="font-sans max-w-screen-2xl mx-auto">
       <Head>
         <meta property="og:site_name" content="USA job search" />
         <meta property="og:image" content="/cover.png" />

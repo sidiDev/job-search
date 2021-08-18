@@ -1,13 +1,12 @@
-import { useRouter } from "next/dist/client/router"
+import Page404 from "../PageError/Page404"
 
 const CompanyLayout = ({ children, data }) => {
-    const router = useRouter()
 
     return data.loggedIn ? (
         data.userData.role == 'company' ? (
             children
         ) : ''
-    ) : router.push('/')
+    ) : <Page404 />
 }
 
 export default CompanyLayout
