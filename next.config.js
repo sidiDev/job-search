@@ -7,12 +7,12 @@ const withPWA = require("next-pwa");
 //     },
 // }
 
-module.exports = withPWA({
-  pwa: {
-    dest: "public",
-    register: true,
-    disable: false,
-    // runtimeCaching,
-    sw: '/sw.js'
-  },
-});
+// module.exports = withPWA({
+//   pwa: {
+//     dest: "public",
+//     register: true,
+//     disable: false,
+//     // runtimeCaching,
+//     sw: '/sw.js'
+//   },
+// });

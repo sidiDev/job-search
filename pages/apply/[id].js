@@ -1,12 +1,12 @@
 import Head from "next/head"
 import ApplyForm from "../../components/ApplyForm/ApplyForm"
 import Nav from '../../components/Nav/Nav'
-import LoggedLayout from '../../components/Layouts/LoggedLayout'
+import EmployeeLayout from '../../components/Layouts/EmployeeLayout'
 import userData from "../../components/userData/UserData"
 
 const index = ({ data }) => {
     return (
-        <LoggedLayout data={data}>
+        <EmployeeLayout data={data}>
             <Head>
                 <title>Apply for job</title>
             </Head>
@@ -14,7 +14,7 @@ const index = ({ data }) => {
                 <Nav data={data} />
             </div>
             <ApplyForm data={data.userData} />
-        </LoggedLayout>
+        </EmployeeLayout>
     )
 }
 
