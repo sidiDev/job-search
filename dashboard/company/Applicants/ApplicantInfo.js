@@ -27,7 +27,7 @@ export default ({ state, setState, applicantInfo }) => {
                                             <span className="text-lg text-gray-800 font-semibold block">{items.applicant.username}</span>
                                             <span className="text-gray-500 block">{items.applicant.jobTitle}</span>
                                         </div>
-                                        <div className="text-gray-500 text-sm mx-auto w-full md:w-10/12">
+                                        <div className="text-gray-500 text-sm mx-auto w-full leading-7 md:w-10/12">
                                             <p>
                                                 {items.about}
                                             </p>
@@ -49,7 +49,7 @@ export default ({ state, setState, applicantInfo }) => {
                                     <div>
                                         <div className="flex items-center justify-center py-2">
                                             <Link href={`/job/${items.job}`}>
-                                                <a className="p-2 px-4 mx-auto text-white bg-cyan-500 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                                                <a className="p-2 px-8 mx-auto text-white bg-cyan-500 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
                                                     View job
                                                 </a>
                                             </Link>
