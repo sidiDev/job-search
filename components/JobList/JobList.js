@@ -33,6 +33,9 @@ export default () => {
 
     return (
         <div className="flex-1 mt-5 mb-3 md:mt-0">
+            <h1 className="py-6 font-semibold text-2xl text-gray-800">
+                Explore Jobs
+            </h1>
             {
                 loading ? (
                     <ul className="space-y-4">

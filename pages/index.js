@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Filter from '../components/Filter/Filter'
 import JobList from '../components/JobList/JobList'
 import Nav from '../components/Nav/Nav'
 import UserData from '../components/userData/UserData'
 import Search from '../components/Search/Search'
+import lStorage from '../components/LStorage/lStorage'
+import RecommendedJobs from '../components/RecommendedJobs/RecommendedJobs'
 
 function Home({ data }) {
 
   const [state, setState] = useState(false)
 
   const enableScrolling = () => document.body.className = 'overflow-auto'
+
+  useEffect(() => {
+  }, [])
   
   return (
     <div>
@@ -36,7 +41,10 @@ function Home({ data }) {
           >
             <Filter setState={setState} enableScrolling={enableScrolling} />
           </div>
-          <JobList />
+          <div className="flex-1">
+            <RecommendedJobs data={data} />
+            <JobList data={data} />
+          </div>
         </div>
       </div>
       <div className={`${state ? '' : 'hidden'} fixed top-0 w-full h-full bg-black opacity-25 sm:hidden`} onClick={() => {

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import data from '../../json/data.json'
+import lStorage from '../LStorage/lStorage'
 
 export default () => {
 
@@ -16,6 +17,11 @@ export default () => {
         let { jobType = '', salary = '', expLevel = '' } = router.query
         
         if (search) {
+
+            search.toLocaleLowerCase().split(' ').forEach(element => {
+                lStorage.setItem('data', element)
+            });
+
             router.push({
                 pathname: '/search',
                 query: { search, location, jobType, salary, expLevel },

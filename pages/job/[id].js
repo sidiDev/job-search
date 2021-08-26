@@ -1,14 +1,20 @@
-import axios from "axios"
 import Head from "next/head"
-import api from "../../api/api"
+import { useEffect } from "react"
 import JobDetails from "../../components/JobDetails/JobDetails"
 import JobDetailsSide from "../../components/JobDetails/JobDetailsSide/JobDetailsSide"
 import JobHeader from "../../components/JobDetails/JobHeader/JobHeader"
+import lStorage from "../../components/LStorage/lStorage"
 import Nav from '../../components/Nav/Nav'
 import JobData from "../../components/userData/JobData"
 
 const Index = ({ data, job }) => {
     const jobData = job.job
+
+    useEffect(() => {
+        jobData.jobTitle.toLocaleLowerCase().split(' ').forEach(element => {
+            lStorage.setItem('data', element)
+        });
+    }, [])
 
     return (
         <>

@@ -34,7 +34,7 @@ function Home({ data }) {
             setJobs(res.data.state)
             setLoading(false)
             seJobState(false)
-            setDocsCount(0)
+            setHideMore(true)
           }
       })
   }, [query, count])
