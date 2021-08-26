@@ -15,7 +15,7 @@ export default ({ data }) => {
         
         const keyWord = keyword()
 
-        const query = `jobTitle=${loggedIn ? userData.jobTitle.toLowerCase() : ''}&keyword=${keyWord && keyWord.key > 1 ? keyWord.value : ''}`
+        const query = `jobTitle=${loggedIn ? userData.jobTitle.toLowerCase() : ''}&keyword=${keyWord && keyWord.key > 5 ? keyWord.value : ''}`
         
         axios.get(`${api}/api/jobs/recommended?${query}`).then(res => {
             if (res.data.jobs) setJobs(res.data.jobs)
