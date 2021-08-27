@@ -1,5 +1,4 @@
 import axios from "axios"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import api from "../../api/api"
 import keyword from "../Keyword/keyword"
@@ -15,7 +14,7 @@ export default ({ data }) => {
         
         const keyWord = keyword()
 
-        const query = `jobTitle=${loggedIn ? userData.jobTitle.toLowerCase() : ''}&keyword=${keyWord && keyWord.key > 5 ? keyWord.value : ''}`
+        const query = `jobTitle=${loggedIn ? userData.jobTitle.toLowerCase() : ''}&keyword=${keyWord && keyWord.key > 3 ? keyWord.value : ''}`
         
         axios.get(`${api}/api/jobs/recommended?${query}`).then(res => {
             if (res.data.jobs) setJobs(res.data.jobs)

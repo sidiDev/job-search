@@ -23,23 +23,23 @@ export default () => {
 
       // Most used keyword
 
-      const numbers = []
-      let keyword = '';
+      let numbers = []
+      let values = []
+      let maxNum;
+      let keyword = ''
       for (let i = 0; i < keys.length; i++) {
-        numbers.push({
+        
+        numbers.push(obj[keys[i]])
+        values.push(maxNum = {
           key: obj[keys[i]],
           value: keys[i]
         })
-        let maxNum = numbers[0]
-        if (obj[keys[i]] > maxNum.key) {
-          maxNum = {
-            key: obj[keys[i]],
-            value: keys[i]
-          }
+        maxNum = Math.max(...numbers)
+        if (maxNum == values[i].key) {
+          keyword = values[i]
         }
-        keyword = maxNum
       }
-
+      
       return keyword
 
     }
